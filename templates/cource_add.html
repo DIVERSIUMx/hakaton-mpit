@@ -30,18 +30,10 @@
 			<p>{{ form.geography(type="checkbox", class="form-check-input") }} {{ form.geography.label }}</p>
 			<p>{{ form.forein_lang(type="checkbox", class="form-check-input") }} {{ form.forein_lang.label }}</p>
 			<table style="width:100%">
-				<thead>
-					<tr>
-						<th>
-							{{ form.submit(class="btn btn-primary") }}
-						</th>
-						<th style="text-align:right">
-							<a class="btn btn-danger" href="/cources/edit/{{ cource_id }}/delete">Удалить</a>
-						</th>
-					</tr>
-				</thead>
-			</table>
-			<p style="color: red">{{mesage}}</p>
+
+				{{ form.submit(class="btn btn-primary") }}
+
+				<p style="color: red">{{mesage}}</p>
 		</form>
 	</div>
 </div>

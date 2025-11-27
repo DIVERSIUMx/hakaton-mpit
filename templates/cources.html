@@ -23,6 +23,11 @@
 		<p>{{ form.forein_lang(type="checkbox", class="form-check-input") }} {{ form.forein_lang.label }}</p>
 		<p>{{ form.submit(class="btn btn-primary") }}</p>
 		</form>
+
+		{% if current_user.is_authenticated %}
+		<hr>
+		<a class="btn btn-success" href="/cources/edit/new">Добавить новый</a>
+		{% endif %}
 	</div>
 </div>
 <div class="cources-list">

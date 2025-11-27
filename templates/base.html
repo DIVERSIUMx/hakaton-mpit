@@ -14,19 +14,24 @@
 <body>
 	<header class="base_header">
 		<div class="header_content">
-			<img class="logo_img" src="/static/img/vsu_logo.png">
-			<a href="/cources">Программы</a>
-			<a href="/merch">Бренд ВГУ</a>
-			{% if current_user and current_user.is_authenticated %}
+			<div>
+				<img class="logo_img" src="/static/img/vsu_logo.png">
+				<h2 style="display:inline; color:white">Воронежский Государственный Университет</h2>
+			</div>
+			<nav style="text-align:right; margin:auto 0; padding:1em">
+				<a href="/cources">Программы</a>
+				<a href="/merch">Бренд ВГУ</a>
+				{% if current_user and current_user.is_authenticated %}
 				<a href="/logout">Выйти</a>
-			{% else %}
+				{% else %}
 				<a href="/login">Войти</a>
-			{% endif %}
+				{% endif %}
+			</nav>
 		</div>
 	</header>
 	<div class="background-img">
-	{% block content %}
-	{% endblock %}
+		{% block content %}
+		{% endblock %}
 	</div>
 </body>
 

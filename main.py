@@ -8,7 +8,7 @@ from data import db_session
 from data.challenges import Chalange
 from data.cources import Cource
 from data.user import User
-from forms.cource import CoureEditForm
+from forms.cource import CoureAddForm, CoureEditForm
 from forms.serch import CoureSerchForm
 from forms.user import UserLogin
 
@@ -139,7 +139,56 @@ def cources_edit(id):
     form.geography.data = cource.geography
     form.forein_lang.data = cource.forein_lang
 
-    return render_template("cource_edit.html", current_user=current_user, form=form)
+    return render_template("cource_edit.html", current_user=current_user, form=form, cource_id=cource.id)
+
+
+@app.route("/cources/edit/<int:id>/delete")
+def delete_couse(id):
+    if not current_user.is_authenticated:
+        return redirect("/cources")
+
+    db = db_session.create_session()
+
+    cource = db.query(Cource).filter(Cource.id == id).first()
+
+    if cource:
+        db.delete(cource)
+        db.commit()
+
+    db.close()
+    return redirect("/cources")
+
+
+@app.route("/cources/edit/new", methods=["GET", "POST"])
+def new_cource():
+    if not current_user.is_authenticated:
+        return redirect("/cources")
+
+    form = CoureAddForm()
+
+    if form.validate_on_submit():
+        cource = Cource()
+        cource.title = form.title.data
+        cource.desc = form.desc.data
+        cource.c_ball = form.ball.data
+
+        cource.math = form.math.data
+        cource.russian_lang = form.russian_lang.data
+        cource.physics = form.physics.data
+        cource.it = form.it.data
+        cource.sosial = form.sosial.data
+        cource.chemystry = form.chemystry.data
+        cource.liter = form.liter.data
+        cource.geography = form.geography.data
+        cource.forein_lang = form.forein_lang.data
+
+        db = db_session.create_session()
+        db.add(cource)
+        db.commit()
+        db.close()
+        return redirect("/cources")
+
+    return render_template("cource_add.html", form=form)
 
 
 @login_manager.user_loader
