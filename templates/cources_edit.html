@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<div class="side-panel-content">
+		<form action="", method="post">
+		{{ form.hidden_tag() }}
+	<div class="form-floating mb-3">
+		{{ form.title(type="text", class="form-control") }}
+		{{ form.title.label }}
+	</div>
+	<div class="form-floating">
+		{{ form.desc(type="text", class="form-control") }}
+		{{ form.desc.label }}
+	</div>
+	<div class="form-floating">
+		{{ form.ball(type="text", class="form-control") }}
+		{{ form.ball.label }}
+	</div>
+		<p>{{ form.by_name(class="form-control", type="text")}}</p>
+
+		<p>По баллам:</p>
+		<p>От {{ form.min_ball(class="form-control", type="text", class="ball-entry", placeholder="0")}} до {{ form.max_ball(class="form-control", type="text", class="ball-entry", placeholder="∞")}}</p>
+		<p style="color: red">{{mesage}}</p>
+		<p>{{ form.math(type="checkbox", class="form-check-input") }} {{ form.math.label }}</p>
+		<p>{{ form.russian_lang(type="checkbox", class="form-check-input") }} {{ form.russian_lang.label }} </p>
+		<p>{{ form.physics(type="checkbox", class="form-check-input") }} {{ form.physics.label }}</p>
+		<p>{{ form.it(type="checkbox", class="form-check-input") }} {{ form.it.label }}</p>
+		<p>{{ form.sosial(type="checkbox", class="form-check-input") }} {{ form.sosial.label }}</p>
+		<p>{{ form.chemystry(type="checkbox", class="form-check-input") }} {{ form.chemystry.label }}</p>
+		<p>{{ form.liter(type="checkbox", class="form-check-input") }} {{ form.liter.label }}</p>
+		<p>{{ form.geography(type="checkbox", class="form-check-input") }} {{ form.geography.label }}</p>
+		<p>{{ form.forein_lang(type="checkbox", class="form-check-input") }} {{ form.forein_lang.label }}</p>
+		<p>{{ form.submit(class="btn btn-primary") }}</p>
+		</form>
+	</div>
+{% endblock %}

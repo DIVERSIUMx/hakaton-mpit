@@ -19,7 +19,7 @@ def global_init(db_file):
     conn_str = f'sqlite:///{db_file.strip()}?check_same_thread=False'
     print(f"Подключаемся к базе ({conn_str})")
 
-    engine = sa.create_engine(conn_str, echo=False)
+    engine = sa.create_engine(conn_str, echo=False, pool_size=0)
     __factory = orm.sessionmaker(bind=engine)
 
     from . import __all_models
@@ -27,6 +27,19 @@ def global_init(db_file):
     SqlAlchemyBase.metadata.create_all(engine)
 
 
-def create_session() -> Session:
+def create_session():
     global __factory
     return __factory()
+
+
+def get_db():
+    global __factory
+    session = __factory()
+    try:
+        yield session
+        session.commit()
+    except:
+        session.rollback()
+        raise
+    finally:
+        session.close()

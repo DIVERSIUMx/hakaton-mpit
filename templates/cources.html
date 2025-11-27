@@ -12,15 +12,15 @@
 		<p>По баллам:</p>
 		<p>От {{ form.min_ball(class="form-control", type="text", class="ball-entry", placeholder="0")}} до {{ form.max_ball(class="form-control", type="text", class="ball-entry", placeholder="∞")}}</p>
 		<p style="color: red">{{mesage}}</p>
-		<p>{{ form.math.label }}{{ form.math(type="checkbox") }}</p>
-		<p>{{ form.russian_lang.label }}{{ form.russian_lang(type="checkbox") }}</p>
-		<p>{{ form.physics.label }}{{ form.physics(type="checkbox") }}</p>
-		<p>{{ form.it.label }}{{ form.it(type="checkbox") }}</p>
-		<p>{{ form.sosial.label }}{{ form.sosial(type="checkbox") }}</p>
-		<p>{{ form.chemystry.label }}{{ form.chemystry(type="checkbox") }}</p>
-		<p>{{ form.liter.label }}{{ form.liter(type="checkbox") }}</p>
-		<p>{{ form.geography.label }}{{ form.geography(type="checkbox") }}</p>
-		<p>{{ form.forein_lang.label }}{{ form.forein_lang(type="checkbox") }}</p>
+		<p>{{ form.math(type="checkbox", class="form-check-input") }} {{ form.math.label }}</p>
+		<p>{{ form.russian_lang(type="checkbox", class="form-check-input") }} {{ form.russian_lang.label }} </p>
+		<p>{{ form.physics(type="checkbox", class="form-check-input") }} {{ form.physics.label }}</p>
+		<p>{{ form.it(type="checkbox", class="form-check-input") }} {{ form.it.label }}</p>
+		<p>{{ form.sosial(type="checkbox", class="form-check-input") }} {{ form.sosial.label }}</p>
+		<p>{{ form.chemystry(type="checkbox", class="form-check-input") }} {{ form.chemystry.label }}</p>
+		<p>{{ form.liter(type="checkbox", class="form-check-input") }} {{ form.liter.label }}</p>
+		<p>{{ form.geography(type="checkbox", class="form-check-input") }} {{ form.geography.label }}</p>
+		<p>{{ form.forein_lang(type="checkbox", class="form-check-input") }} {{ form.forein_lang.label }}</p>
 		<p>{{ form.submit(class="btn btn-primary") }}</p>
 		</form>
 	</div>
@@ -79,6 +79,9 @@
 				</tr>
 			</tbody>
 		</table>
+		{% if current_user.is_authenticated %}
+		<a class="btn btn-warning" href="/cources/edit/{{ cource.id }}">Изменить</a>
+		{% endif %}
 	</div>
 	{% endfor %}
 

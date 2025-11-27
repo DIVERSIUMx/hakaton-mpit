@@ -1,12 +1,13 @@
 from flask_wtf import FlaskForm
-from wtforms import BooleanField, IntegerField, StringField, SubmitField
-from wtforms.validators import NumberRange
+from wtforms import (BooleanField, IntegerField, StringField, SubmitField,
+                     TextAreaField)
+from wtforms.validators import DataRequired, NumberRange
 
 
-class CoureSerchForm(FlaskForm):
-    by_name = StringField("По названию", validators=[])
-    min_ball = StringField("от", validators=[])
-    max_ball = StringField("до", validators=[])
+class CoureEditForm(FlaskForm):
+    title = StringField("Название", validators=[DataRequired()])
+    desc = TextAreaField("Описание", validators=[DataRequired()])
+    ball = StringField("Проходние баллы", validators=[DataRequired()])
 
     math = BooleanField("Математика", default=False)
     russian_lang = BooleanField("Русский язык", default=False)
@@ -18,4 +19,4 @@ class CoureSerchForm(FlaskForm):
     geography = BooleanField("География", default=False)
     forein_lang = BooleanField("Иностранный язык", default=False)
 
-    submit = SubmitField("Найти")
+    submit = SubmitField("Применить")
