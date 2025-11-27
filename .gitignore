@@ -1,0 +1,10 @@
+/.venv
+/config.py
+importlib time
+/db
+__pycache__
+/data_files/*
+/static/data_files/*
+/instance/*
+information.log
+.env
