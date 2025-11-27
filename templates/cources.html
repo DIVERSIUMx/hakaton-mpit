@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="side-panel">
+	<div class="side-panel-content">
+		<form action="", method="post">
+		{{ form.hidden_tag() }}
+		<h2>Поиск:</h2>
+		<p>По названию:</p>
+		<p>{{ form.by_name(class="form-control", type="text")}}</p>
+
+		<p>По баллам:</p>
+		<p>От {{ form.min_ball(class="form-control", type="text", class="ball-entry", placeholder="0")}} до {{ form.max_ball(class="form-control", type="text", class="ball-entry", placeholder="∞")}}</p>
+		<p style="color: red">{{mesage}}</p>
+		<p>{{ form.math.label }}{{ form.math(type="checkbox") }}</p>
+		<p>{{ form.russian_lang.label }}{{ form.russian_lang(type="checkbox") }}</p>
+		<p>{{ form.physics.label }}{{ form.physics(type="checkbox") }}</p>
+		<p>{{ form.it.label }}{{ form.it(type="checkbox") }}</p>
+		<p>{{ form.sosial.label }}{{ form.sosial(type="checkbox") }}</p>
+		<p>{{ form.chemystry.label }}{{ form.chemystry(type="checkbox") }}</p>
+		<p>{{ form.liter.label }}{{ form.liter(type="checkbox") }}</p>
+		<p>{{ form.geography.label }}{{ form.geography(type="checkbox") }}</p>
+		<p>{{ form.forein_lang.label }}{{ form.forein_lang(type="checkbox") }}</p>
+		<p>{{ form.submit(class="btn btn-primary") }}</p>
+		</form>
+	</div>
+</div>
+<div class="cources-list">
+	{% set flag = True %}
+
+	{% for cource in cources %}
+	<div class="cource-card">
+		<h3>{{cource.title}}</h3>
+		<p><bold>Описание: </bold>{{cource.desc}}</p>
+		<hr>
+		<table>
+			<thead>
+				<th>
+					<h4 class="w100">Экзамены:</h4>
+				</th>
+				<th style="width: 10%">
+					<h6 class="pass-ball">Проходние баллы: </h6>
+				</th>
+			</thead>
+			<tbody>
+				<tr>
+					<td>
+						{% if cource.math %}
+						<p class="challenge-name">Математика</p>
+						{% endif %}
+						{% if cource.physics %}
+						<p class="challenge-name">Физика</p>
+						{% endif %}
+						{% if cource.russian_lang %}
+						<p class="challenge-name">Русский язык</p>
+						{% endif %}
+						{% if cource.it %}
+						<p class="challenge-name">Информатика</p>
+						{% endif %}
+						{% if cource.sosial %}
+						<p class="challenge-name">Обществознание</p>
+						{% endif %}
+						{% if cource.chemyctry %}
+						<p class="challenge-name">Химия</p>
+						{% endif %}
+						{% if cource.liter %}
+						<p class="challenge-name">Литература</p>
+						{% endif %}
+						{% if cource.geography %}
+						<p class="challenge-name">География</p>
+						{% endif %}
+						{% if cource.forein_lang %}
+						<p class="challenge-name">Иностранный язык</p>
+						{% endif %}
+					</td>
+					<td>
+						<h4 style="text-align:center">{{ cource.c_ball }}</h4>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	{% endfor %}
+
+</div>
+{% endblock %}
