@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div id="merch-placer">
+	<div class="text-placer">
+		<h1>Мерч ВГУ</h1>
+		<hr>
+		<p>hvalenie mercha</p>
+	</div>
+	<div id="carouselExample" class="carousel slide">
+		<div class="carousel-inner">
+			<div class="carousel-item active">
+				<div class="merch-item">
+					<img src="/static/img/merch/1.png" class="merch-img">
+					<h3>Черная футболка</h3>
+					<p>Стильная черная футболка с серым логотипом ВГУ</p>
+					<a class="btn btn-primary">Купить</a>
+				</div>
+			</div>
+			<div class="carousel-item">
+				<div class="merch-item">
+					<img src="/static/img/merch/2.png" class="merch-img">
+					<h3>Черная футболка</h3>
+					<p>Стильная черная футболка с белым логотипом ВГУ</p>
+					<a class="btn btn-primary">Купить</a>
+				</div>
+			</div>
+			<div class="carousel-item">
+				<div class="merch-item">
+					<img src="/static/img/merch/3.png" class="merch-img">
+					<h3>Белая футболка</h3>
+					<p>Стильная белая футболка с белым логотипом ВГУ</p>
+					<a class="btn btn-primary">Купить</a>
+				</div>
+			</div>
+		</div>
+		<button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			<span class="visually-hidden">Previous</span>
+		</button>
+		<button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+			<span class="carousel-control-next-icon" aria-hidden="true"></span>
+			<span class="visually-hidden">Next</span>
+		</button>
+	</div>
+</div>
+<h1 style="text-align:center">Активности и новости ВГУ<h1>
+{% for n in news %}
+<div class="news-card">
+	<img src="/static/img/news/{{ n.img }}">
+	<div>
+		<h1>{{ n.name }}</h1>
+		<h5>{{ n.body }}</h5>
+	</div>
+<div>
+</div>
+{% endfor %}
+{% endblock %}

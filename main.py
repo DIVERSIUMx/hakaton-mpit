@@ -7,6 +7,7 @@ from flask_login import LoginManager, current_user, login_user, logout_user
 from data import db_session
 from data.challenges import Chalange
 from data.cources import Cource
+from data.news import News
 from data.user import User
 from forms.cource import CoureAddForm, CoureEditForm
 from forms.serch import CoureSerchForm
@@ -191,10 +192,17 @@ def new_cource():
     return render_template("cource_add.html", form=form)
 
 
+@app.route("/merch")
+def merch():
+    db = db_session.create_session()
+    news = db.query(News)
+    return render_template("merch.html", news=news)
+
+
 @login_manager.user_loader
 def load_user(id):
-    db_sess = db_session.create_session()
-    return db_sess.query(User).get(id)
+    db = db_session.create_session()
+    return db.query(User).get(id)
 
 
 def main():
