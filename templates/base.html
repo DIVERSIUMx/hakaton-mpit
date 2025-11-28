@@ -15,6 +15,7 @@
 </head>
 
 <body>
+	<img src="/static/img/background_u.png" class="back-img">
 	<header class="site-header py-2">
 		<div class="container d-flex align-items-center justify-content-between">
 			<div class="d-flex align-items-center gap-3">
@@ -110,15 +111,19 @@
 
         // Обновляем карточки
         document.querySelectorAll('.glass-card').forEach(card => {
-          card.style.background = 'linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.9))';
+          card.style.background = 'linear-gradient(180deg, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.5))';
           card.style.border = '1px solid #cbd5e1';
           card.style.color = '#001032';
           card.style.boxShadow = '0 8px 30px rgba(0, 16, 50, 0.1)';
         });
 
+        document.querySelectorAll('.glass-card-news').forEach(card => {
+          card.style.background = 'linear-gradient(180deg, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.5))';
+        });
+
         // Обновляем форму
         document.querySelectorAll('.form-control').forEach(input => {
-          input.style.background = 'rgba(255, 255, 255, 0.95)';
+          input.style.background = 'rgba(255, 255, 255, 0.8)';
           input.style.border = '1px solid #cbd5e1';
           input.style.color = '#001032';
         });
@@ -134,10 +139,14 @@
         document.body.style.color = '#eef2ff';
 
         document.querySelectorAll('.glass-card').forEach(card => {
-          card.style.background = 'linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01))';
+          card.style.background = 'linear-gradient(180deg, rgba(15,23,36,0.8), rgba(15, 23, 36,0.8))';
           card.style.border = '1px solid rgba(255,255,255,0.06)';
           card.style.color = '#eef2ff';
           card.style.boxShadow = '0 8px 30px rgba(0,0,0,0.6)';
+        });
+
+        document.querySelectorAll('.glass-card-news').forEach(card => {
+          card.style.background = 'linear-gradient(180deg, rgba(15,23,36,0.8), rgba(15, 23, 36,0.8))';
         });
 
         document.querySelectorAll('.form-control').forEach(input => {

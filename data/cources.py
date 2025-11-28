@@ -1,11 +1,12 @@
 import sqlalchemy as sa
 from sqlalchemy import orm
+from sqlalchemy_serializer import SerializerMixin
 from werkzeug.security import check_password_hash, generate_password_hash
 
 from .db_session import SqlAlchemyBase
 
 
-class Cource(SqlAlchemyBase):
+class Cource(SqlAlchemyBase, SerializerMixin):
     __tablename__ = "cources"
 
     id = sa.Column(sa.Integer, primary_key=True, autoincrement=True)
@@ -24,4 +25,3 @@ class Cource(SqlAlchemyBase):
     forein_lang = sa.Column(sa.Boolean, default=True)
 
     # challenges = orm.relationship("Chalange", back_populates="cources")
-    ball = orm.relationship("Ball", back_populates="cource")

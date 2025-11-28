@@ -13,5 +13,3 @@ class Ball(SqlAlchemyBase):
     ball = sa.Column(sa.Integer)
 
     cource_id = sa.Column(sa.Integer, sa.ForeignKey("cources.id"))
-
-    cource = orm.relationship("Cource", back_populates="ball")

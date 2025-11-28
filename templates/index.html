@@ -57,13 +57,15 @@
 					</div>
 				</div>
 				{% for n in news[1:] %}
-				<div class="glass-card-news" style="margin:2em">
-					<div class="h-100" style="display:flex">
-						<img class="news-img" src="/static/img/news/{{ n.img }}">
-						<div style="padding:1em">
-							<h5>{{ n.name }}</h5>
-							<p class="muted">{{ n.body}}</p>
+				<div class="carousel-item">
+					<div class="glass-card-news" style="margin:2em">
+						<div class="h-100" style="display:flex">
+							<img class="news-img" src="/static/img/news/{{ n.img }}">
+							<div style="padding:1em">
+								<h5>{{ n.name }}</h5>
+								<p class="muted">{{ n.body}}</p>
 
+							</div>
 						</div>
 					</div>
 				</div>
@@ -76,7 +78,7 @@
 		</div>
 		{% endif %}
 	</div>
-	</section>
+
 
 	<section id="join">
 		<div class="container">
@@ -201,7 +203,7 @@
 							<li>Информация о проходных баллах прошлых лет</li>
 							<li>Рекомендации по улучшению результатов</li>
 						</ul>
-						<a href="calculator_ege.html" class="btn btn-vgu mt-3">Открыть калькулятор</a>
+						<a href="/calc" class="btn btn-vgu mt-3">Открыть калькулятор</a>
 					</div>
 				</div>
 				<div class="col-lg-6 reveal">

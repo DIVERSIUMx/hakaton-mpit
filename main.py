@@ -1,7 +1,8 @@
 import os
 
 import dotenv
-from flask import Blueprint, Flask, abort, redirect, render_template, request
+from flask import (Blueprint, Flask, abort, json, jsonify, make_response,
+                   redirect, render_template, request)
 from flask_login import LoginManager, current_user, login_user, logout_user
 from PIL import Image
 
@@ -286,6 +287,48 @@ def merch():
     db = db_session.create_session()
     news = db.query(News)
     return render_template("merch.html", news=news, current_user=current_user)
+
+
+@app.route("/api/get-avalable-cources")
+def get_cources():
+    ball_ctn = request.args.get("ball_ctn")
+
+    if not ball_ctn or not ball_ctn.isnumeric():
+        return make_response({"error": "Bad request"}, 400)
+
+    db = db_session.create_session()
+
+    c = db.query(Cource).filter(Cource.c_ball <= int(ball_ctn))
+    if not request.args.get("math"):
+        c = c.filter(Cource.math == 0)
+
+    if not request.args.get("it"):
+        c = c.filter(Cource.it == 0)
+
+    if not request.args.get("chemystry"):
+        c = c.filter(Cource.chemystry == 0)
+
+    if not request.args.get("sosial"):
+        c = c.filter(Cource.sosial == 0)
+
+    if not request.args.get("physics"):
+        c = c.filter(Cource.physics == 0)
+
+    if not request.args.get("russian_lang"):
+        c = c.filter(Cource.russian_lang == 0)
+
+    if not request.args.get("geography"):
+        c = c.filter(Cource.geography == 0)
+
+    if not request.args.get("liter"):
+        c = c.filter(Cource.liter == 0)
+
+    return make_response(jsonify([cource.to_dict() for cource in c]), 200)
+
+
+@app.route("/calc")
+def calc():
+    return render_template("calc.html")
 
 
 @login_manager.user_loader

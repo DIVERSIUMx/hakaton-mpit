@@ -107,7 +107,7 @@
 										<h5>{{ n.name }}</h5>
 										<p class="muted">{{ n.body}}</p>
                                         {% if current_user.is_authenticated %}
-                                        <a href="/news/edit/{{ n.id }}" class="btn btn-warning">Изменить</a>
+                                        <a href="/news/edit/{{ n.id }}" class="btn btn-vgu">✏️ Изменить</a>
                                         {% endif %}
 									</div>
 								</div>
@@ -119,7 +119,7 @@
     </div>
     {% endfor %}
     {% if current_user.is_authenticated %}
-        <a href="/news/edit/new" class="btn btn-success w-100" style="margin-top: 2em">Добавить Новое</a>
+        <a href="/news/edit/new" class="btn btn-vgu w-100" style="margin-top: 2em">Добавить Новое</a>
     {% endif %}
 </div>
 </div>

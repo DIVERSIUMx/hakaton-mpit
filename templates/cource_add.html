@@ -2,22 +2,17 @@
 
 {% block content %}
 <div class="cource-edit">
-	<div class="side-panel-content">
+	<div class="glass-card">
 		<form action="" , method="post">
 			{{ form.hidden_tag() }}
-			<div class="form-floating mb-3">
-				{{ form.title(type="text", class="form-control") }}
 				{{ form.title.label }}
-			</div>
-			<div class="form-floating">
-				{{ form.desc(type="text", class="form-control") }}
+				{{ form.title(type="text", class="form-control") }}
+				<br>
 				{{ form.desc.label }}
-			</div>
+				{{ form.desc(type="text", class="form-control") }}
 			<br>
-			<div class="form-floating">
-				{{ form.ball(type="number", class="form-control") }}
 				{{ form.ball.label }}
-			</div>
+				{{ form.ball(type="number", class="form-control") }}
 			<hr>
 
 			<p>{{ form.math(type="checkbox", class="form-check-input") }} {{ form.math.label }}</p>

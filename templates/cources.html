@@ -12,12 +12,12 @@
                 {{ form.hidden_tag() }}
                 
                 <div class="mb-3">
-                    <label class="form-label">По названию:</label>
+                    <label class="form-label muted">По названию:</label>
                     {{ form.by_name(class="form-control", type="text", placeholder="Введите название...") }}
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label">По баллам:</label>
+                    <label class="form-label muted">По баллам:</label>
                     <div class="row g-2">
                         <div class="col">
                             {{ form.min_ball(class="form-control", type="text", placeholder="От") }}
@@ -33,7 +33,7 @@
                 {% endif %}
 
                 <div class="mb-3">
-                    <label class="form-label">Предметы ЕГЭ:</label>
+                    <label class="form-label muted">Предметы ЕГЭ:</label>
                     <div class="form-check">
                         {{ form.math(class="form-check-input") }}
                         <label class="form-check-label">{{ form.math.label }}</label>
@@ -96,48 +96,55 @@
                         
                         <div class="d-flex flex-wrap gap-2 mb-2">
                             {% if cource.math %}
-                            <span class="badge bg-primary">Математика</span>
+                            <span class="badge ege">Математика</span>
                             {% endif %}
                             {% if cource.physics %}
-                            <span class="badge bg-primary">Физика</span>
+                            <span class="badge ege">Физика</span>
                             {% endif %}
                             {% if cource.russian_lang %}
-                            <span class="badge bg-primary">Русский язык</span>
+                            <span class="badge ege">Русский язык</span>
                             {% endif %}
                             {% if cource.it %}
-                            <span class="badge bg-primary">Информатика</span>
+                            <span class="badge ege">Информатика</span>
                             {% endif %}
                             {% if cource.sosial %}
-                            <span class="badge bg-primary">Обществознание</span>
+                            <span class="badge ege">Обществознание</span>
                             {% endif %}
                             {% if cource.chemystry %}
-                            <span class="badge bg-primary">Химия</span>
+                            <span class="badge ege">Химия</span>
                             {% endif %}
                             {% if cource.liter %}
-                            <span class="badge bg-primary">Литература</span>
+                            <span class="badge ege">Литература</span>
                             {% endif %}
                             {% if cource.geography %}
-                            <span class="badge bg-primary">География</span>
+                            <span class="badge ege">География</span>
                             {% endif %}
                             {% if cource.forein_lang %}
-                            <span class="badge bg-primary">Иностранный язык</span>
+                            <span class="badge ege">Иностранный язык</span>
                             {% endif %}
                         </div>
                     </div>
                     
                     <div class="col-3 text-center">
-                        <div class="bg-dark rounded p-2">
-                            <small class="text-muted">Проходной балл</small>
-                            <h4 class="mb-0 text-warning">{{ cource.c_ball }}</h4>
+                        <div class="rounded p-2">
+                            <p><small>Проходной балл</small></p>
+                            {% if cource.c_ball > 350 %}
+                            <h4 class="ball hard-ball">{{ cource.c_ball }}</h4>
+                            {% elif cource.c_ball > 250 %}
+                            <h4 class="ball medium-ball">{{ cource.c_ball }}</h4>
+                            {% elif cource.c_ball > 150 %}
+                            <h4 class="ball easy-ball">{{ cource.c_ball }}</h4>
+                            {% else %}
+                            <h4 class="ball less-ball">{{ cource.c_ball }}</h4>
+                            {% endif %}
                         </div>
-                        
-                        {% if current_user.is_authenticated %}
-                        <a class="btn btn-warning btn-sm mt-2 w-100" href="/cources/edit/{{ cource.id }}">
-                            ✏️ Изменить
-                        </a>
-                        {% endif %}
                     </div>
                 </div>
+                {% if current_user.is_authenticated %}
+                <a class="btn btn-sm btn-vgu" href="/cources/edit/{{ cource.id }}">
+                    ✏️ Изменить
+                </a>
+                {% endif %}
             </div>
             {% else %}
             <div class="text-center py-4">

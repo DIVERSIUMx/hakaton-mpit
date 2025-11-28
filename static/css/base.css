@@ -151,6 +151,7 @@ nav>a {
 }
 
 .merch-img {
+	background-color: white;
 	height: 30em;
 	margin: 4em auto;
 	border-radius: 1em;
@@ -304,7 +305,7 @@ nav .nav-link:hover:after {
 }
 
 .glass-card {
-	background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+	background-color: rgba(15, 23, 36, 0.8);
 	border: 1px solid rgba(255, 255, 255, 0.06);
 	border-radius: 18px;
 	padding: 2rem;
@@ -314,7 +315,7 @@ nav .nav-link:hover:after {
 }
 
 .glass-card-news {
-	background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+	background-color: rgba(15, 23, 36, 0.8);
 	border: 1px solid rgba(255, 255, 255, 0.06);
 	border-radius: 18px;
 	box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
@@ -611,6 +612,44 @@ section {
 
 :root[data-theme="light"] .btn-close {
 	filter: invert(1);
+}
+
+.ball {
+	padding: 0.5rem;
+	border-radius: 0.5rem;
+
+	display: inline;
+}
+
+.hard-ball {
+	background-color: #bb0000;
+	color: white;
+}
+
+.medium-ball {
+	background-color: #ccaa00;
+	color: white;
+}
+
+.easy-ball {
+	background-color: #00cc00;
+	color: white;
+}
+
+.less-ball {
+	background-color: #50cc50;
+	color: white;
+}
+
+.back-img {
+	width: 100%;
+	z-index: -100;
+	position: fixed;
+	top: 75px;
+}
+
+.ege {
+	background-color: #12245bbb;
 }
 
 /* .header_content { */

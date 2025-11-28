@@ -2,7 +2,7 @@
 
 {% block content %}
 <div class="cource-edit">
-	<div class="side-panel-content">
+	<div class="glass-card">
 		<form action="" , method="post" enctype="multipart/form-data">
 			{{ form.hidden_tag() }}
 			{{ form.name.label }}
@@ -10,12 +10,11 @@
 			<br>
 			{{ form.body.label }}
 			{{ form.body(type="text", class="form-control") }}
-			<div class="mb-3">
+			<div class="py-3">
 				{{form.img.label(for="formFile", class="form-label") }}
 				{{form.img(class="form-control", type="file") }}
 			</div>
 			<hr>
-
 			<table style="width:100%">
 				<thead>
 					<tr>
