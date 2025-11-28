@@ -29,47 +29,53 @@
 		</div>
 	</section>
 
-		<div class="container">
-			<div class="d-flex justify-content-between align-items-center mb-3">
-				<div>
-					<div class="section-title">Новости</div>
-					<div class="muted">Свежие события и объявления</div>
-				</div>
-				<div class="carousel-controls">
-					<button id="prevNews" class="carousel-btn">‹</button>
-					<button id="nextNews" class="carousel-btn">›</button>
-				</div>
+	<div class="container">
+		<div class="d-flex justify-content-between align-items-center mb-3">
+			<div>
+				<div class="section-title">Новости</div>
+				<div class="muted">Свежие события и объявления</div>
 			</div>
-
-			<div id="newsCarousel" class="carousel slide" data-bs-ride="false">
-				<div class="carousel-inner">
-					<div class="carousel-item active">
-							<div class="glass-card-news" style="margin:2em">
-								<div class="h-100" style="display:flex">
-									<img class="news-img" src="/static/img/news/{{ news[0].img }}">
-									<div style="padding:1em">
-										<h5>{{ news[0].name }}</h5>
-										<p class="muted">{{ news[0].body}}</p>
-
-									</div>
-								</div>
-							</div>
-					</div>
-					{% for n in news[1:] %}
-							<div class="glass-card-news" style="margin:2em">
-								<div class="h-100" style="display:flex">
-									<img class="news-img" src="/static/img/news/{{ n.img }}">
-									<div style="padding:1em">
-										<h5>{{ n.name }}</h5>
-										<p class="muted">{{ n.body}}</p>
-
-									</div>
-								</div>
-							</div>
-					{% endfor %}
-				</div>
+			<div class="carousel-controls">
+				<button id="prevNews" class="carousel-btn">‹</button>
+				<button id="nextNews" class="carousel-btn">›</button>
 			</div>
 		</div>
+
+		{% if news.count() > 1 %}
+		<div id="newsCarousel" class="carousel slide" data-bs-ride="false">
+			<div class="carousel-inner">
+				<div class="carousel-item active">
+					<div class="glass-card-news" style="margin:2em">
+						<div class="h-100" style="display:flex">
+							<img class="news-img" src="/static/img/news/{{ news[0].img }}">
+							<div style="padding:1em">
+								<h5>{{ news[0].name }}</h5>
+								<p class="muted">{{ news[0].body}}</p>
+
+							</div>
+						</div>
+					</div>
+				</div>
+				{% for n in news[1:] %}
+				<div class="glass-card-news" style="margin:2em">
+					<div class="h-100" style="display:flex">
+						<img class="news-img" src="/static/img/news/{{ n.img }}">
+						<div style="padding:1em">
+							<h5>{{ n.name }}</h5>
+							<p class="muted">{{ n.body}}</p>
+
+						</div>
+					</div>
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+		{% else %}
+		<div class="text-center py-4">
+			<p class="muted">Новостей пока нет</p>
+		</div>
+		{% endif %}
+	</div>
 	</section>
 
 	<section id="join">

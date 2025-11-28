@@ -46,6 +46,7 @@ def login():
         if not user or not user.check_password(form.password.data):
             return render_template("login.html", message="Неверный логин или пароль", form=form, current_user=current_user)
         login_user(user, remember=form.remember_me.data)
+        return redirect("/")
 
     return render_template("login.html", form=form, current_user=current_user)
 
