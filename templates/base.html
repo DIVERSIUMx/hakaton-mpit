@@ -11,41 +11,151 @@
 		crossorigin="anonymous"></script>
 	<link href="/static/css/base.css" rel="stylesheet">
 	<title>{{ title }}</title>
+
 </head>
 
 <body>
-	<main>
-		<header class="site-header py-2">
-			<div class="container d-flex align-items-center justify-content-between">
-				<div class="d-flex align-items-center gap-3">
-					<div class="logo-wrap">
-						<img src="/static/img/vsu_logo.png" alt="VGU logo">
-						<div>
-							<div class="brand-text">Воронежский Государственный Университет</div>
-							<div class="brand-sub">Онлайн Сервис — Абитуриент</div>
-						</div>
+	<header class="site-header py-2">
+		<div class="container d-flex align-items-center justify-content-between">
+			<div class="d-flex align-items-center gap-3">
+				<div class="logo-wrap">
+					<img src="/static/img/vsu_logo.png" alt="VGU logo">
+					<div>
+						<div class="brand-text">Воронежский Государственный Университет</div>
+						<div class="brand-sub">Онлайн Сервис — Абитуриент</div>
 					</div>
 				</div>
-
-				<nav class="d-none d-md-flex align-items-center">
-					<a class="nav-link" href="#home">Главная</a>
-					<a class="nav-link" href="#join">Поступления</a>
-					<a class="nav-link" href="#brand">Бренд</a>
-					<a class="nav-link" href="#calculator">Калькулятор</a>
-					<button class="btn btn-outline-light btn-sm ms-3">Войти</button>
-				</nav>
-
-				<div class="d-md-none">
-					<button class="btn btn-sm btn-outline-light" type="button" data-bs-toggle="offcanvas"
-						data-bs-target="#mobileMenu">Меню</button>
-				</div>
 			</div>
-		</header>
-		<!-- <div class="background-img"> -->
+
+			<nav class="d-none d-md-flex align-items-center">
+				<a class="nav-link" href="/">Главная</a>
+				<a class="nav-link" href="/cources">Поступления</a>
+				<a class="nav-link" href="/merch">Бренд</a>
+				{% if current_user.is_authenticated %}
+				<a class="btn btn-outline-light btn-sm ms-3" href="/logout">Выйти</a>
+				{% else %}
+				<a class="btn btn-outline-light btn-sm ms-3" href="/login">Войти</a>
+				{% endif %}
+
+        <button class="theme-toggle btn btn-outline-light btn-sm ms-3" id="themeToggle" title="Переключить тему">
+          <span class="theme-icon">🌙</span>
+        </button>
+			</nav>
+
+			<div class="d-md-none">
+				<button class="btn btn-sm btn-outline-light" data-bs-toggle="offcanvas"
+					data-bs-target="#mobileMenu">Меню</button>
+			</div>
+		</div>
+	</header>
+
+	<div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="mobileMenu">
+		<div class="offcanvas-header">
+			<h5 class="offcanvas-title">Меню</h5>
+			<button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+		</div>
+		<div class="offcanvas-body">
+			<ul class="list-unstyled">
+				<li><a class="d-block py-2 text-decoration-none text-white" href="/"
+						data-bs-dismiss="offcanvas">Главная</a>
+				</li>
+				<li><a class="d-block py-2 text-decoration-none text-white" href="/coucers"
+						data-bs-dismiss="offcanvas">Поступления</a></li>
+				<li><a class="d-block py-2 text-decoration-none text-white" href="/merch"
+						data-bs-dismiss="offcanvas">Бренд</a></li>
+				<li><a class="d-block py-2 text-decoration-none text-white" href="/"
+						data-bs-dismiss="offcanvas">Калькулятор</a></li>
+				<li class="pt-3"><button class="btn btn-light w-100">Войти</button></li>
+			</ul>
+		</div>
+	</div>
+	<main>
 		{% block content %}
 		{% endblock %}
-		</div>
 	</main>
+  <script>
+    // Управление темами для главной страницы
+    function initTheme() {
+      const savedTheme = localStorage.getItem('theme') || 'dark';
+      const html = document.documentElement;
+
+      html.setAttribute('data-theme', savedTheme);
+      updateThemeIcon(savedTheme);
+      applyThemeToPage(savedTheme);
+    }
+
+    function toggleTheme() {
+      const html = document.documentElement;
+      const currentTheme = html.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+      html.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      updateThemeIcon(newTheme);
+      applyThemeToPage(newTheme);
+    }
+
+    function updateThemeIcon(theme) {
+      const icons = document.querySelectorAll('.theme-icon');
+      icons.forEach(icon => {
+        icon.textContent = theme === 'dark' ? '🌙' : '☀️';
+      });
+    }
+
+    function applyThemeToPage(theme) {
+      if (theme === 'light') {
+        // Применяем светлую тему
+        document.body.style.background = '#f1f5f9';
+        document.body.style.color = '#001032';
+
+        // Обновляем карточки
+        document.querySelectorAll('.glass-card').forEach(card => {
+          card.style.background = 'linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.9))';
+          card.style.border = '1px solid #cbd5e1';
+          card.style.color = '#001032';
+          card.style.boxShadow = '0 8px 30px rgba(0, 16, 50, 0.1)';
+        });
+
+        // Обновляем форму
+        document.querySelectorAll('.form-control').forEach(input => {
+          input.style.background = 'rgba(255, 255, 255, 0.95)';
+          input.style.border = '1px solid #cbd5e1';
+          input.style.color = '#001032';
+        });
+
+        // Обновляем muted текст
+        document.querySelectorAll('.muted').forEach(el => {
+          el.style.color = '#588cc8';
+        });
+
+      } else {
+        // Возвращаем темную тему
+        document.body.style.background = '#0f1724';
+        document.body.style.color = '#eef2ff';
+
+        document.querySelectorAll('.glass-card').forEach(card => {
+          card.style.background = 'linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01))';
+          card.style.border = '1px solid rgba(255,255,255,0.06)';
+          card.style.color = '#eef2ff';
+          card.style.boxShadow = '0 8px 30px rgba(0,0,0,0.6)';
+        });
+
+        document.querySelectorAll('.form-control').forEach(input => {
+          input.style.background = 'rgba(255,255,255,0.05)';
+          input.style.border = '1px solid rgba(255,255,255,0.1)';
+          input.style.color = 'white';
+        });
+
+        document.querySelectorAll('.muted').forEach(el => {
+          el.style.color = 'rgba(255,255,255,0.75)';
+        });
+      }
+    }
+
+    // Инициализация темы
+    document.addEventListener('DOMContentLoaded', initTheme);
+    document.getElementById('themeToggle')?.addEventListener('click', toggleTheme);
+  </script>
 </body>
 
 </html>

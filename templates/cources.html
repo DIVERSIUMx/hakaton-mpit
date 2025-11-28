@@ -1,94 +1,152 @@
 {% extends "base.html" %}
 
+{% block title %}Поступления - ВГУ{% endblock %}
+
 {% block content %}
-<div class="side-panel">
-	<div class="side-panel-content">
-		<form action="", method="post">
-		{{ form.hidden_tag() }}
-		<h2>Поиск:</h2>
-		<p>По названию:</p>
-		<p>{{ form.by_name(class="form-control", type="text")}}</p>
+<div style="padding: 1em">
+<div class="row">
+    <div class="col-md-4">
+        <div class="glass-card mb-4">
+            <h3 class="mb-3">🔍 Поиск направлений</h3>
+            <form action="" method="post">
+                {{ form.hidden_tag() }}
+                
+                <div class="mb-3">
+                    <label class="form-label">По названию:</label>
+                    {{ form.by_name(class="form-control", type="text", placeholder="Введите название...") }}
+                </div>
 
-		<p>По баллам:</p>
-		<p>От {{ form.min_ball(class="form-control", type="text", class="ball-entry", placeholder="0")}} до {{ form.max_ball(class="form-control", type="text", class="ball-entry", placeholder="∞")}}</p>
-		<p style="color: red">{{mesage}}</p>
-		<p>{{ form.math(type="checkbox", class="form-check-input") }} {{ form.math.label }}</p>
-		<p>{{ form.russian_lang(type="checkbox", class="form-check-input") }} {{ form.russian_lang.label }} </p>
-		<p>{{ form.physics(type="checkbox", class="form-check-input") }} {{ form.physics.label }}</p>
-		<p>{{ form.it(type="checkbox", class="form-check-input") }} {{ form.it.label }}</p>
-		<p>{{ form.sosial(type="checkbox", class="form-check-input") }} {{ form.sosial.label }}</p>
-		<p>{{ form.chemystry(type="checkbox", class="form-check-input") }} {{ form.chemystry.label }}</p>
-		<p>{{ form.liter(type="checkbox", class="form-check-input") }} {{ form.liter.label }}</p>
-		<p>{{ form.geography(type="checkbox", class="form-check-input") }} {{ form.geography.label }}</p>
-		<p>{{ form.forein_lang(type="checkbox", class="form-check-input") }} {{ form.forein_lang.label }}</p>
-		<p>{{ form.submit(class="btn btn-primary") }}</p>
-		</form>
+                <div class="mb-3">
+                    <label class="form-label">По баллам:</label>
+                    <div class="row g-2">
+                        <div class="col">
+                            {{ form.min_ball(class="form-control", type="text", placeholder="От") }}
+                        </div>
+                        <div class="col">
+                            {{ form.max_ball(class="form-control", type="text", placeholder="До") }}
+                        </div>
+                    </div>
+                </div>
 
-		{% if current_user.is_authenticated %}
-		<hr>
-		<a class="btn btn-success" href="/cources/edit/new">Добавить новый</a>
-		{% endif %}
-	</div>
+                {% if message %}
+                <div class="alert alert-danger">{{ message }}</div>
+                {% endif %}
+
+                <div class="mb-3">
+                    <label class="form-label">Предметы ЕГЭ:</label>
+                    <div class="form-check">
+                        {{ form.math(class="form-check-input") }}
+                        <label class="form-check-label">{{ form.math.label }}</label>
+                    </div>
+                    <div class="form-check">
+                        {{ form.russian_lang(class="form-check-input") }}
+                        <label class="form-check-label">{{ form.russian_lang.label }}</label>
+                    </div>
+                    <div class="form-check">
+                        {{ form.physics(class="form-check-input") }}
+                        <label class="form-check-label">{{ form.physics.label }}</label>
+                    </div>
+                    <div class="form-check">
+                        {{ form.it(class="form-check-input") }}
+                        <label class="form-check-label">{{ form.it.label }}</label>
+                    </div>
+                    <div class="form-check">
+                        {{ form.sosial(class="form-check-input") }}
+                        <label class="form-check-label">{{ form.sosial.label }}</label>
+                    </div>
+                    <div class="form-check">
+                        {{ form.chemystry(class="form-check-input") }}
+                        <label class="form-check-label">{{ form.chemystry.label }}</label>
+                    </div>
+                    <div class="form-check">
+                        {{ form.liter(class="form-check-input") }}
+                        <label class="form-check-label">{{ form.liter.label }}</label>
+                    </div>
+                    <div class="form-check">
+                        {{ form.geography(class="form-check-input") }}
+                        <label class="form-check-label">{{ form.geography.label }}</label>
+                    </div>
+                    <div class="form-check">
+                        {{ form.forein_lang(class="form-check-input") }}
+                        <label class="form-check-label">{{ form.forein_lang.label }}</label>
+                    </div>
+                </div>
+
+                {{ form.submit(class="btn btn-vgu w-100") }}
+            </form>
+
+            {% if current_user.is_authenticated %}
+            <hr class="my-4">
+            <a class="btn btn-success w-100" href="/cources/edit/new">➕ Добавить направление</a>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Список направлений -->
+    <div class="col-md-8">
+        <div class="glass-card">
+            <h3 class="mb-4">🎓 Направления подготовки</h3>
+            
+            {% for cource in cources %}
+            <div class="glass-card mb-3 p-3" style="background: rgba(255,255,255,0.03);">
+                <div class="row align-items-center">
+                    <div class="col-9">
+                        <h5 class="text-primary">{{ cource.title }}</h5>
+                        <p class="muted mb-2">{{ cource.desc }}</p>
+                        
+                        <div class="d-flex flex-wrap gap-2 mb-2">
+                            {% if cource.math %}
+                            <span class="badge bg-primary">Математика</span>
+                            {% endif %}
+                            {% if cource.physics %}
+                            <span class="badge bg-primary">Физика</span>
+                            {% endif %}
+                            {% if cource.russian_lang %}
+                            <span class="badge bg-primary">Русский язык</span>
+                            {% endif %}
+                            {% if cource.it %}
+                            <span class="badge bg-primary">Информатика</span>
+                            {% endif %}
+                            {% if cource.sosial %}
+                            <span class="badge bg-primary">Обществознание</span>
+                            {% endif %}
+                            {% if cource.chemystry %}
+                            <span class="badge bg-primary">Химия</span>
+                            {% endif %}
+                            {% if cource.liter %}
+                            <span class="badge bg-primary">Литература</span>
+                            {% endif %}
+                            {% if cource.geography %}
+                            <span class="badge bg-primary">География</span>
+                            {% endif %}
+                            {% if cource.forein_lang %}
+                            <span class="badge bg-primary">Иностранный язык</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    <div class="col-3 text-center">
+                        <div class="bg-dark rounded p-2">
+                            <small class="text-muted">Проходной балл</small>
+                            <h4 class="mb-0 text-warning">{{ cource.c_ball }}</h4>
+                        </div>
+                        
+                        {% if current_user.is_authenticated %}
+                        <a class="btn btn-warning btn-sm mt-2 w-100" href="/cources/edit/{{ cource.id }}">
+                            ✏️ Изменить
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% else %}
+            <div class="text-center py-4">
+                <h5 class="">Направления не найдены</h5>
+                <p class="muted">Попробуйте изменить параметры поиска</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
 </div>
-<div class="cources-list">
-	{% set flag = True %}
-
-	{% for cource in cources %}
-	<div class="cource-card">
-		<h3>{{cource.title}}</h3>
-		<p><bold>Описание: </bold>{{cource.desc}}</p>
-		<hr>
-		<table>
-			<thead>
-				<th>
-					<h4 class="w100">Экзамены:</h4>
-				</th>
-				<th style="width: 10%">
-					<h6 class="pass-ball">Проходние баллы: </h6>
-				</th>
-			</thead>
-			<tbody>
-				<tr>
-					<td>
-						{% if cource.math %}
-						<p class="challenge-name">Математика</p>
-						{% endif %}
-						{% if cource.physics %}
-						<p class="challenge-name">Физика</p>
-						{% endif %}
-						{% if cource.russian_lang %}
-						<p class="challenge-name">Русский язык</p>
-						{% endif %}
-						{% if cource.it %}
-						<p class="challenge-name">Информатика</p>
-						{% endif %}
-						{% if cource.sosial %}
-						<p class="challenge-name">Обществознание</p>
-						{% endif %}
-						{% if cource.chemyctry %}
-						<p class="challenge-name">Химия</p>
-						{% endif %}
-						{% if cource.liter %}
-						<p class="challenge-name">Литература</p>
-						{% endif %}
-						{% if cource.geography %}
-						<p class="challenge-name">География</p>
-						{% endif %}
-						{% if cource.forein_lang %}
-						<p class="challenge-name">Иностранный язык</p>
-						{% endif %}
-					</td>
-					<td>
-						<h4 style="text-align:center">{{ cource.c_ball }}</h4>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-		{% if current_user.is_authenticated %}
-		<a class="btn btn-warning" href="/cources/edit/{{ cource.id }}">Изменить</a>
-		{% endif %}
-	</div>
-	{% endfor %}
-
 </div>
 {% endblock %}

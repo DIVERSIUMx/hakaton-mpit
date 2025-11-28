@@ -1,27 +1,728 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="container">
-	<div class="row align-items-center">
-		<div class="col-lg-7 mb-4 reveal">
-			<div class="glass-card">
-				<h1 class="mb-2">Добро пожаловать в ВГУ</h1>
-				<div class="muted mb-3">Крупнейший классический университет Центрального Черноземья — образование,
-					наука и возможности.</div>
-				<div class="d-flex gap-3">
-					<a href="#join" class="btn btn-lg btn-vgu">Поступление</a>
-					<a href="#calculator" class="btn btn-outline-light btn-lg">Калькулятор ЕГЭ</a>
+
+
+
+<main>
+	<section id="home" class="hero">
+		<div class="container">
+			<div class="row align-items-center">
+				<div class="col-lg-7 mb-4 reveal">
+					<div class="glass-card">
+						<h1 class="mb-2">Добро пожаловать в ВГУ</h1>
+						<div class="muted mb-3">Крупнейший классический университет Центрального Черноземья —
+							образование, наука и возможности.</div>
+						<div class="d-flex gap-3">
+							<a href="#join" class="btn btn-lg btn-vgu">Поступление</a>
+							<a href="#calculator" class="btn btn-outline-light btn-lg">Калькулятор ЕГЭ</a>
+						</div>
+						<div class="accent-underline mt-4"></div>
+					</div>
 				</div>
-				<div class="accent-underline mt-4"></div>
+				<div class="col-lg-5 reveal">
+					<div class="image-container" style="height:320px">
+						<img src="/static/img/vsu_photos/1.jpg" alt="Инфо ВГУ">
+					</div>
+				</div>
 			</div>
 		</div>
-		<div class="col-lg-5 reveal">
-			<div class="image-container" style="height:320px">
-				<img src="slide_postuplenie2.jpg" alt="Инфо ВГУ">
+	</section>
+
+		<div class="container">
+			<div class="d-flex justify-content-between align-items-center mb-3">
+				<div>
+					<div class="section-title">Новости</div>
+					<div class="muted">Свежие события и объявления</div>
+				</div>
+				<div class="carousel-controls">
+					<button id="prevNews" class="carousel-btn">‹</button>
+					<button id="nextNews" class="carousel-btn">›</button>
+				</div>
 			</div>
+
+			<div id="newsCarousel" class="carousel slide" data-bs-ride="false">
+				<div class="carousel-inner">
+					<div class="carousel-item active">
+							<div class="glass-card-news" style="margin:2em">
+								<div class="h-100" style="display:flex">
+									<img class="news-img" src="/static/img/news/{{ news[0].img }}">
+									<div style="padding:1em">
+										<h5>{{ news[0].name }}</h5>
+										<p class="muted">{{ news[0].body}}</p>
+
+									</div>
+								</div>
+							</div>
+					</div>
+					{% for n in news[1:] %}
+							<div class="glass-card-news" style="margin:2em">
+								<div class="h-100" style="display:flex">
+									<img class="news-img" src="/static/img/news/{{ n.img }}">
+									<div style="padding:1em">
+										<h5>{{ n.name }}</h5>
+										<p class="muted">{{ n.body}}</p>
+
+									</div>
+								</div>
+							</div>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="join">
+		<div class="container">
+			<div class="row align-items-center">
+				<div class="col-lg-6 reveal">
+					<div class="glass-card p-4 h-100">
+						<h3>Поступление в ВГУ</h3>
+						<p class="muted">Стань частью ведущего классического университета Центрального Черноземья. Мы
+							предлагаем широкий выбор направлений подготовки и современные образовательные программы.</p>
+
+						<form class="mt-4">
+							<div class="mb-3">
+								<label for="fullName" class="form-label">ФИО</label>
+								<input type="text" class="form-control" id="fullName" placeholder="Иванов Иван Иванович"
+									required>
+							</div>
+							<div class="mb-3">
+								<label for="phone" class="form-label">Телефон</label>
+								<input type="tel" class="form-control" id="phone" placeholder="+7 (999) 123-45-67"
+									required>
+							</div>
+							<div class="mb-3">
+								<label for="direction" class="form-label">Направление подготовки</label>
+								<select class="form-control" id="direction" required>
+									<option value="" selected disabled>Выберите направление</option>
+									{% for c in cources %}
+									<option value="{{ c.id }}">{{ c.title }}</option>
+									{% endfor %}
+								</select>
+							</div>
+
+							<button type="submit" class="btn btn-vgu w-100 mt-3">Отправить заявку</button>
+							<div class="form-text text-center">
+								Оставьте заявку и мы свяжемся с вами для консультации по поступлению
+							</div>
+						</form>
+					</div>
+				</div>
+				<div class="col-lg-6 reveal">
+					<div class="text-center">
+						<div class="image-container">
+							<img src="slide_postuplenie.jpg" alt="Поступление в ВГУ">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="brand">
+		<div class="container">
+			<div class="row align-items-center">
+				<div class="col-lg-6 order-lg-2 reveal">
+					<div class="glass-card p-4 h-100">
+						<h3>Бренд ВГУ</h3>
+						<p class="muted">Воронежский государственный университет — это не просто образовательное
+							учреждение, а бренд с более чем вековой историей. Наш университет объединяет традиции
+							классического образования и современные научные достижения.</p>
+						<p class="muted">Фирменный стиль ВГУ отражает наш статус ведущего вуза региона и подчеркивает
+							академическую строгость, открытость инновациям и стремление к развитию.</p>
+						<div class="mt-3">
+							<a href="#" class="img-btn" role="button">
+								<img src="slide_brand.jpg" alt="Бренд ВГУ">
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-6 order-lg-1 reveal">
+					<div id="brandCarousel" class="carousel slide brand-carousel" data-bs-ride="carousel"
+						data-bs-interval="4000">
+						<div class="carousel-indicators">
+							<button type="button" data-bs-target="#brandCarousel" data-bs-slide-to="0"
+								class="active"></button>
+							<button type="button" data-bs-target="#brandCarousel" data-bs-slide-to="1"></button>
+							<button type="button" data-bs-target="#brandCarousel" data-bs-slide-to="2"></button>
+							<button type="button" data-bs-target="#brandCarousel" data-bs-slide-to="3"></button>
+						</div>
+						<div class="carousel-inner">
+							<div class="carousel-item active">
+								<img src="asset/carousel/кружка_пит.png" class="d-block w-100" alt="Кружка ВГУ">
+							</div>
+							<div class="carousel-item">
+								<img src="asset/carousel/футболка_бел2.png" class="d-block w-100"
+									alt="Футболка белая ВГУ">
+							</div>
+							<div class="carousel-item">
+								<img src="asset/carousel/футболка_чёр1.png" class="d-block w-100"
+									alt="Футболка черная ВГУ">
+							</div>
+							<div class="carousel-item">
+								<img src="asset/carousel/футболка_чёр2.png" class="d-block w-100"
+									alt="Футболка черная ВГУ 2">
+							</div>
+						</div>
+						<button class="carousel-control-prev" type="button" data-bs-target="#brandCarousel"
+							data-bs-slide="prev">
+							<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+							<span class="visually-hidden">Предыдущий</span>
+						</button>
+						<button class="carousel-control-next" type="button" data-bs-target="#brandCarousel"
+							data-bs-slide="next">
+							<span class="carousel-control-next-icon" aria-hidden="true"></span>
+							<span class="visually-hidden">Следующий</span>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="calculator">
+		<div class="container">
+			<div class="row align-items-center">
+				<div class="col-lg-6 reveal">
+					<div class="glass-card p-4 h-100 calculator-preview">
+						<h3>Калькулятор ЕГЭ</h3>
+						<p class="muted">Узнайте, на какие направления подготовки в ВГУ вы можете поступить с вашими
+							баллами ЕГЭ. Наш калькулятор поможет определить ваши шансы.</p>
+						<ul class="muted mt-3">
+							<li>Простой ввод баллов по предметам</li>
+							<li>Автоматический подбор подходящих направлений</li>
+							<li>Информация о проходных баллах прошлых лет</li>
+							<li>Рекомендации по улучшению результатов</li>
+						</ul>
+						<a href="calculator_ege.html" class="btn btn-vgu mt-3">Открыть калькулятор</a>
+					</div>
+				</div>
+				<div class="col-lg-6 reveal">
+					<div class="image-container">
+						<img src="slide_calculator.jpg" alt="Калькулятор ЕГЭ ВГУ">
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+	const observer = new IntersectionObserver((entries) => {
+		entries.forEach(e => {
+			if (e.isIntersecting) e.target.classList.add('in-view');
+		});
+	}, {threshold: 0.12});
+	document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+	const carousel = document.querySelector('#newsCarousel');
+	const bsCarousel = bootstrap.Carousel.getOrCreateInstance(carousel, {interval: false});
+	document.getElementById('prevNews').addEventListener('click', () => bsCarousel.prev());
+	document.getElementById('nextNews').addEventListener('click', () => bsCarousel.next());
+
+	window.addEventListener('scroll', () => {
+		const header = document.querySelector('.site-header');
+		if (window.scrollY > 50) {
+			header.classList.add('scrolled');
+		} else {
+			header.classList.remove('scrolled');
+		}
+	});
+
+	document.querySelector('form').addEventListener('submit', function (e) {
+		e.preventDefault();
+		alert('Спасибо за вашу заявку! Мы свяжемся с вами в ближайшее время для консультации по поступлению.');
+		this.reset();
+	});
+
+	document.addEventListener('keydown', (e) => {
+		if (e.key === 'ArrowLeft') bsCarousel.prev();
+		if (e.key === 'ArrowRight') bsCarousel.next();
+	});
+
+	document.querySelectorAll('img').forEach(img => {
+		img.onerror = () => {
+			img.style.opacity = '0.15';
+			img.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMjIzNTZjIiBvcGFjaXR5PSIwLjEiLz48L3N2Zz4=';
+		}
+	});
+</script>
+<!-- Добавить перед закрывающим тегом </body> -->
+<div class="chat-widget">
+	<!-- Кнопка чата -->
+	<div class="chat-button" id="chatButton">
+		<div class="chat-icon">💬</div>
+		<div class="chat-pulse"></div>
+	</div>
+
+	<!-- Окно чата -->
+	<div class="chat-container" id="chatContainer">
+		<div class="chat-header">
+			<div class="chat-avatar">🎓</div>
+			<div class="chat-info">
+				<div class="chat-title">Помощник ВГУ</div>
+				<div class="chat-status">Онлайн • Отвечает быстро</div>
+			</div>
+			<button class="chat-close" id="chatClose">×</button>
+		</div>
+
+		<div class="chat-messages" id="chatMessages">
+			<div class="message bot-message">
+				<div class="message-avatar">🎓</div>
+				<div class="message-content">
+					<div class="message-text">Привет! Я помогу тебе с поступлением в ВГУ. Выбери вопрос:</div>
+					<div class="quick-replies">
+						<button class="quick-reply" data-question="проходные">📊 Проходные баллы</button>
+						<button class="quick-reply" data-question="документы">📄 Какие документы нужны?</button>
+						<button class="quick-reply" data-question="направления">🎯 Популярные направления</button>
+						<button class="quick-reply" data-question="сроки">⏰ Сроки подачи</button>
+						<button class="quick-reply" data-question="общежитие">🏠 Общежитие</button>
+						<button class="quick-reply" data-question="контакты">📞 Контакты приемной комиссии</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="chat-input-container">
+			<input type="text" class="chat-input" id="chatInput" placeholder="Напишите ваш вопрос...">
+			<button class="chat-send" id="chatSend">➤</button>
 		</div>
 	</div>
 </div>
+
+<style>
+	.chat-widget {
+		position: fixed;
+		bottom: 30px;
+		right: 30px;
+		z-index: 1000;
+	}
+
+	/* Кнопка чата */
+	.chat-button {
+		width: 70px;
+		height: 70px;
+		background: linear-gradient(135deg, var(--vgu), var(--vgu-2));
+		border-radius: 50%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		cursor: pointer;
+		box-shadow: 0 8px 25px rgba(35, 53, 108, 0.4);
+		transition: all 0.3s ease;
+		position: relative;
+	}
+
+	.chat-button:hover {
+		transform: scale(1.1);
+		box-shadow: 0 12px 35px rgba(35, 53, 108, 0.6);
+	}
+
+	.chat-icon {
+		font-size: 28px;
+		filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+	}
+
+	.chat-pulse {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		border-radius: 50%;
+		background: transparent;
+		border: 2px solid var(--vgu);
+		animation: pulse 2s infinite;
+	}
+
+	@keyframes pulse {
+		0% {
+			transform: scale(1);
+			opacity: 1;
+		}
+
+		100% {
+			transform: scale(1.3);
+			opacity: 0;
+		}
+	}
+
+	/* Окно чата */
+	.chat-container {
+		position: absolute;
+		bottom: 90px;
+		right: 0;
+		width: 380px;
+		height: 500px;
+		background: linear-gradient(135deg, rgba(15, 23, 36, 0.95), rgba(8, 18, 38, 0.98));
+		border: 1px solid rgba(255, 255, 255, 0.1);
+		border-radius: 20px;
+		backdrop-filter: blur(20px);
+		box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+		display: none;
+		flex-direction: column;
+		overflow: hidden;
+	}
+
+	.chat-container.active {
+		display: flex;
+		animation: slideUp 0.3s ease;
+	}
+
+	@keyframes slideUp {
+		from {
+			opacity: 0;
+			transform: translateY(20px) scale(0.9);
+		}
+
+		to {
+			opacity: 1;
+			transform: translateY(0) scale(1);
+		}
+	}
+
+	/* Шапка чата */
+	.chat-header {
+		background: linear-gradient(90deg, var(--vgu), var(--vgu-2));
+		padding: 20px;
+		display: flex;
+		align-items: center;
+		gap: 12px;
+	}
+
+	.chat-avatar {
+		font-size: 24px;
+		width: 40px;
+		height: 40px;
+		background: rgba(255, 255, 255, 0.2);
+		border-radius: 50%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.chat-info {
+		flex: 1;
+	}
+
+	.chat-title {
+		font-weight: 700;
+		font-size: 16px;
+		color: white;
+	}
+
+	.chat-status {
+		font-size: 12px;
+		color: rgba(255, 255, 255, 0.8);
+	}
+
+	.chat-close {
+		background: none;
+		border: none;
+		color: white;
+		font-size: 24px;
+		cursor: pointer;
+		width: 30px;
+		height: 30px;
+		border-radius: 50%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		transition: background 0.3s ease;
+	}
+
+	.chat-close:hover {
+		background: rgba(255, 255, 255, 0.1);
+	}
+
+	/* Сообщения */
+	.chat-messages {
+		flex: 1;
+		padding: 20px;
+		overflow-y: auto;
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+	}
+
+	.message {
+		display: flex;
+		gap: 10px;
+		max-width: 85%;
+	}
+
+	.bot-message {
+		align-self: flex-start;
+	}
+
+	.user-message {
+		align-self: flex-end;
+		flex-direction: row-reverse;
+	}
+
+	.message-avatar {
+		width: 32px;
+		height: 32px;
+		border-radius: 50%;
+		background: rgba(255, 255, 255, 0.1);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-size: 14px;
+		flex-shrink: 0;
+	}
+
+	.message-content {
+		background: rgba(255, 255, 255, 0.05);
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		border-radius: 18px;
+		padding: 12px 16px;
+		backdrop-filter: blur(10px);
+	}
+
+	.user-message .message-content {
+		background: linear-gradient(135deg, var(--vgu), var(--vgu-2));
+		border-color: rgba(255, 255, 255, 0.1);
+	}
+
+	.message-text {
+		color: rgba(255, 255, 255, 0.9);
+		line-height: 1.4;
+		font-size: 14px;
+	}
+
+	.user-message .message-text {
+		color: white;
+	}
+
+	/* Быстрые ответы */
+	.quick-replies {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+		margin-top: 12px;
+	}
+
+	.quick-reply {
+		background: rgba(255, 255, 255, 0.08);
+		border: 1px solid rgba(255, 255, 255, 0.1);
+		border-radius: 12px;
+		padding: 10px 14px;
+		color: rgba(255, 255, 255, 0.9);
+		font-size: 13px;
+		cursor: pointer;
+		transition: all 0.3s ease;
+		text-align: left;
+		backdrop-filter: blur(10px);
+	}
+
+	.quick-reply:hover {
+		background: rgba(255, 255, 255, 0.12);
+		transform: translateX(5px);
+	}
+
+	/* Поле ввода */
+	.chat-input-container {
+		padding: 20px;
+		border-top: 1px solid rgba(255, 255, 255, 0.08);
+		display: flex;
+		gap: 10px;
+		align-items: center;
+	}
+
+	.chat-input {
+		flex: 1;
+		background: rgba(255, 255, 255, 0.05);
+		border: 1px solid rgba(255, 255, 255, 0.1);
+		border-radius: 20px;
+		padding: 12px 18px;
+		color: white;
+		font-size: 14px;
+		backdrop-filter: blur(10px);
+	}
+
+	.chat-input:focus {
+		outline: none;
+		border-color: rgba(255, 255, 255, 0.2);
+	}
+
+	.chat-input::placeholder {
+		color: rgba(255, 255, 255, 0.5);
+	}
+
+	.chat-send {
+		width: 44px;
+		height: 44px;
+		background: linear-gradient(135deg, var(--vgu), var(--vgu-2));
+		border: none;
+		border-radius: 50%;
+		color: white;
+		cursor: pointer;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		transition: all 0.3s ease;
+	}
+
+	.chat-send:hover {
+		transform: scale(1.1);
+		box-shadow: 0 5px 15px rgba(35, 53, 108, 0.4);
+	}
+
+	/* Адаптивность */
+	@media (max-width: 480px) {
+		.chat-widget {
+			bottom: 20px;
+			right: 20px;
+		}
+
+		.chat-container {
+			width: calc(100vw - 40px);
+			right: -10px;
+		}
+
+		.chat-button {
+			width: 60px;
+			height: 60px;
+		}
+	}
+</style>
+
+<script>
+	// Данные бота
+	const botResponses = {
+		'проходные': 'Средние проходные баллы в ВГУ:\n\n📊 Математика и IT: 180-250\n🔬 Естественные науки: 150-200\n📚 Гуманитарные: 140-190\n💼 Экономика: 170-220\n\nИспользуйте калькулятор ЕГЭ для точного подбора!',
+
+		'документы': 'Для поступления нужны:\n\n• Паспорт\n• Аттестат/диплом\n• Фото 3×4 (4 шт.)\n• Медсправка 086/у\n• Результаты ЕГЭ\n• Документы о льготах (при наличии)\n\nПодача документов онлайн доступна!',
+
+		'направления': 'Популярные направления:\n\n🎯 Информатика и IT\n🔬 Фундаментальная медицина\n💼 Экономика и менеджмент\n⚖️ Юриспруденция\n🌍 Международные отношения\n🔧 Инженерные специальности',
+
+		'сроки': 'Сроки подачи документов:\n\n📅 Бакалавриат: 20 июня - 25 июля\n📅 Магистратура: 20 июня - 10 августа\n📅 Аспирантура: 1 июля - 20 августа\n\nРекомендуем подавать заранее!',
+
+		'общежитие': 'ВГУ предоставляет общежития:\n\n🏠 8 студенческих городков\n💰 Стоимость: 800-1500₽/мес\n📍 Рядом с учебными корпусами\n⭐ Комнаты на 2-3 человека\n\nГарантия для иногородних!',
+
+		'контакты': 'Приемная комиссия ВГУ:\n\n📞 Телефон: +7 (473) 220-75-00\n📧 Email: priem@vsu.ru\n📍 Адрес: г. Воронеж, Университетская пл., 1\n🕒 Часы работы: 9:00-18:00 (Пн-Пт)',
+
+		'привет': 'Привет! Я помогу тебе с поступлением в ВГУ. Выбери вопрос из списка или напиши свой!',
+
+		'default': 'Извините, я еще учусь! Пока могу ответить на вопросы о проходных баллах, документах, направлениях, сроках, общежитии и контактах. Выберите один из этих вариантов!'
+	};
+
+	// Элементы DOM
+	const chatButton = document.getElementById('chatButton');
+	const chatContainer = document.getElementById('chatContainer');
+	const chatClose = document.getElementById('chatClose');
+	const chatMessages = document.getElementById('chatMessages');
+	const chatInput = document.getElementById('chatInput');
+	const chatSend = document.getElementById('chatSend');
+	const quickReplies = document.querySelectorAll('.quick-reply');
+
+	// Открытие/закрытие чата
+	chatButton.addEventListener('click', () => {
+		chatContainer.classList.add('active');
+	});
+
+	chatClose.addEventListener('click', () => {
+		chatContainer.classList.remove('active');
+	});
+
+	// Отправка сообщения
+	function sendMessage() {
+		const message = chatInput.value.trim();
+		if (!message) return;
+
+		// Добавляем сообщение пользователя
+		addMessage(message, 'user');
+		chatInput.value = '';
+
+		// Имитируем задержку ответа бота
+		setTimeout(() => {
+			const response = getBotResponse(message);
+			addMessage(response, 'bot');
+		}, 1000);
+	}
+
+	// Обработчики отправки
+	chatSend.addEventListener('click', sendMessage);
+	chatInput.addEventListener('keypress', (e) => {
+		if (e.key === 'Enter') sendMessage();
+	});
+
+	// Быстрые ответы
+	quickReplies.forEach(button => {
+		button.addEventListener('click', () => {
+			const question = button.getAttribute('data-question');
+			addMessage(button.textContent, 'user');
+
+			setTimeout(() => {
+				const response = botResponses[question] || botResponses.default;
+				addMessage(response, 'bot');
+			}, 1000);
+		});
+	});
+
+	// Добавление сообщения в чат
+	function addMessage(text, sender) {
+		const messageDiv = document.createElement('div');
+		messageDiv.className = `message ${sender}-message`;
+
+		const avatar = document.createElement('div');
+		avatar.className = 'message-avatar';
+		avatar.textContent = sender === 'bot' ? '🎓' : '👤';
+
+		const content = document.createElement('div');
+		content.className = 'message-content';
+
+		const textDiv = document.createElement('div');
+		textDiv.className = 'message-text';
+		textDiv.textContent = text;
+
+		content.appendChild(textDiv);
+		messageDiv.appendChild(avatar);
+		messageDiv.appendChild(content);
+
+		chatMessages.appendChild(messageDiv);
+		chatMessages.scrollTop = chatMessages.scrollHeight;
+	}
+
+	// Получение ответа бота
+	function getBotResponse(message) {
+		const lowerMessage = message.toLowerCase();
+
+		if (lowerMessage.includes('привет') || lowerMessage.includes('здравств')) {
+			return botResponses.привет;
+		}
+		if (lowerMessage.includes('балл') || lowerMessage.includes('проходн')) {
+			return botResponses.проходные;
+		}
+		if (lowerMessage.includes('документ') || lowerMessage.includes('справк')) {
+			return botResponses.документы;
+		}
+		if (lowerMessage.includes('направлен') || lowerMessage.includes('специальност')) {
+			return botResponses.направления;
+		}
+		if (lowerMessage.includes('срок') || lowerMessage.includes('когда')) {
+			return botResponses.сроки;
+		}
+		if (lowerMessage.includes('общежит') || lowerMessage.includes('жиль')) {
+			return botResponses.общежитие;
+		}
+		if (lowerMessage.includes('контакт') || lowerMessage.includes('телефон') || lowerMessage.includes('адрес')) {
+			return botResponses.контакты;
+		}
+
+		return botResponses.default;
+	}
+
+	// Закрытие чата по клику вне области
+	document.addEventListener('click', (e) => {
+		if (!chatContainer.contains(e.target) && !chatButton.contains(e.target) && chatContainer.classList.contains('active')) {
+			chatContainer.classList.remove('active');
+		}
+	});
+</script>
+
 <!-- <div id="main-placer"> -->
 <!-- <div class="text-placer"> -->
 <!-- 	<h3>Добро пожаловать в ВГУ</h3> -->

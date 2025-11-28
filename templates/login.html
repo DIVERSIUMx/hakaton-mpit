@@ -1,22 +1,47 @@
 {% extends "base.html" %}
 
+{% block title %}Вход - ВГУ{% endblock %}
+
 {% block content %}
-<div class="login-box">
-	<form action="" method="post" class="login-form">
-	{{ form.hidden_tag()}}
-	<h3>Вход с систему</h3>
-	<hr>
-	<div class="form-floating mb-3">
-		{{ form.email(type="email", class="form-control") }}
-		{{ form.email.label }}
-	</div>
-	<div class="form-floating">
-		{{ form.password(type="password", class="form-control") }}
-		{{ form.password.label }}
-	</div>
-	<br>
-	{{ form.submit(class="btn btn-primary") }}
-	<p style="color: red">{{message}}</p>
-	</form>
+<div style="padding: 1em">
+<div class="row justify-content-center">
+    <div class="col-md-6 col-lg-4">
+        <div class="glass-card">
+            <div class="text-center mb-4">
+                <h2>🔐 Вход в систему</h2>
+                <p class="muted">Войдите в личный кабинет</p>
+            </div>
+
+            <form action="" method="post">
+                {{ form.hidden_tag() }}
+                
+                <div class="mb-3">
+                    <label class="form-label">Email</label>
+                    {{ form.email(type="email", class="form-control", placeholder="example@mail.ru") }}
+                </div>
+
+                <div class="mb-4">
+                    <label class="form-label">Пароль</label>
+                    {{ form.password(type="password", class="form-control", placeholder="Введите пароль") }}
+                </div>
+
+                <div class="mb-3">
+                    <div class="form-check">
+                        {{ form.remember_me(class="form-check-input") }}
+                        <label class="form-check-label">{{ form.remember_me.label }}</label>
+                    </div>
+                </div>
+
+                {{ form.submit(class="btn btn-vgu w-100") }}
+
+                {% if message %}
+                <div class="alert alert-danger mt-3">
+                    {{ message }}
+                </div>
+                {% endif %}
+            </form>
+        </div>
+    </div>
+</div>
 </div>
 {% endblock %}

@@ -1,0 +1,244 @@
+:root[data-theme="light"] {
+	--vgu: #23356c;
+	--vgu-2: #013870;
+	--vgu-3: #001032;
+	--vgu-accent: #588cc8;
+	--vgu-glow: rgba(35, 53, 108, 0.1);
+	--glass: rgba(255, 255, 255, 0.95);
+	--card-glass: rgba(255, 255, 255, 0.9);
+	--card-glass-hover: rgba(255, 255, 255, 0.95);
+	--text-primary: #001032;
+	--text-secondary: #013870;
+	--text-muted: #588cc8;
+	--bg-primary: #f8fafc;
+	--bg-secondary: #f1f5f9;
+	--bg-gradient: linear-gradient(180deg, #f1f5f9 0%, #e2e8f0 60%);
+	--border-color: #cbd5e1;
+	--shadow-color: rgba(0, 16, 50, 0.1);
+	--shadow-hover: rgba(0, 16, 50, 0.15);
+}
+
+/* Light Theme Styles - хеддер остается темным */
+:root[data-theme="light"] body {
+	background: var(--bg-gradient);
+	color: var(--text-primary);
+}
+
+/* Хеддер НЕ меняется для светлой темы - остается темным */
+:root[data-theme="light"] .site-header {
+	/* Оставляем оригинальные стили хедера */
+	backdrop-filter: blur(12px);
+	background: linear-gradient(180deg, rgba(35, 53, 108, 0.7), rgba(35, 53, 108, 0.4));
+	border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+:root[data-theme="light"] .site-header.scrolled {
+	background: rgba(35, 53, 108, 0.85);
+	backdrop-filter: blur(16px);
+}
+
+/* Остальные стили для светлой темы */
+:root[data-theme="light"] .glass-card {
+	background: linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.9));
+	border: 1px solid var(--border-color);
+	box-shadow: 0 8px 30px var(--shadow-color);
+	color: var(--text-primary);
+}
+
+:root[data-theme="light"] .glass-card:hover {
+	border-color: var(--vgu-accent);
+	box-shadow: 0 12px 40px var(--shadow-hover);
+	transform: translateY(-3px);
+}
+
+:root[data-theme="light"] .muted {
+	color: var(--text-muted);
+}
+
+:root[data-theme="light"] .form-control {
+	background: rgba(255, 255, 255, 0.95);
+	border: 1px solid var(--border-color);
+	color: var(--text-primary);
+	font-weight: 500;
+}
+
+:root[data-theme="light"] .form-control:focus {
+	background: rgba(255, 255, 255, 0.98);
+	border-color: var(--vgu);
+	box-shadow: 0 0 0 0.2rem rgba(35, 53, 108, 0.15);
+	color: var(--text-primary);
+}
+
+:root[data-theme="light"] .form-control::placeholder {
+	color: var(--text-muted);
+	font-weight: normal;
+}
+
+:root[data-theme="light"] .form-label {
+	color: var(--text-secondary);
+	font-weight: 600;
+}
+
+:root[data-theme="light"] .form-text {
+	color: var(--text-muted);
+}
+
+:root[data-theme="light"] .carousel-btn {
+	background: rgba(255, 255, 255, 0.95);
+	border: 1px solid var(--border-color);
+	color: var(--text-secondary);
+	font-weight: 600;
+}
+
+:root[data-theme="light"] .carousel-btn:hover {
+	background: var(--vgu);
+	color: white;
+}
+
+:root[data-theme="light"] .calculator-preview {
+	background: linear-gradient(135deg, rgba(88, 140, 200, 0.1), rgba(35, 53, 108, 0.05));
+	border-left: 4px solid var(--vgu);
+}
+
+:root[data-theme="light"] .btn-outline-light {
+	color: var(--text-secondary);
+	border-color: var(--border-color);
+	font-weight: 500;
+}
+
+:root[data-theme="light"] .btn-outline-light:hover {
+	background: var(--vgu);
+	border-color: var(--vgu);
+	color: white;
+}
+
+:root[data-theme="light"] .image-container {
+	box-shadow: 0 12px 40px var(--shadow-color);
+	border: 1px solid var(--border-color);
+}
+
+:root[data-theme="light"] .image-container:hover {
+	box-shadow: 0 16px 50px var(--shadow-hover);
+}
+
+:root[data-theme="light"] .brand-carousel {
+	box-shadow: 0 12px 40px var(--shadow-color);
+	border: 1px solid var(--border-color);
+}
+
+:root[data-theme="light"] .brand-carousel .carousel-item img {
+	background: rgba(255, 255, 255, 0.95);
+}
+
+:root[data-theme="light"] .img-btn {
+	border: 1px solid var(--border-color);
+}
+
+:root[data-theme="light"] .img-btn:hover {
+	box-shadow: 0 12px 25px var(--shadow-hover);
+}
+
+:root[data-theme="light"] .accent-underline {
+	background: linear-gradient(90deg, var(--vgu), var(--vgu-accent));
+}
+
+/* Chat widget light theme */
+:root[data-theme="light"] .chat-container {
+	background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(248, 250, 252, 0.95));
+	border: 1px solid var(--border-color);
+	box-shadow: 0 20px 60px rgba(0, 16, 50, 0.15);
+}
+
+:root[data-theme="light"] .message-content {
+	background: rgba(255, 255, 255, 0.95);
+	border: 1px solid var(--border-color);
+	color: var(--text-primary);
+}
+
+:root[data-theme="light"] .quick-reply {
+	background: rgba(255, 255, 255, 0.9);
+	border: 1px solid var(--border-color);
+	color: var(--text-primary);
+	font-weight: 500;
+}
+
+:root[data-theme="light"] .quick-reply:hover {
+	background: var(--vgu);
+	color: white;
+}
+
+:root[data-theme="light"] .chat-input {
+	background: rgba(255, 255, 255, 0.95);
+	border: 1px solid var(--border-color);
+	color: var(--text-primary);
+	font-weight: 500;
+}
+
+:root[data-theme="light"] .chat-input::placeholder {
+	color: var(--text-muted);
+}
+
+:root[data-theme="light"] .message-avatar {
+	background: rgba(88, 140, 200, 0.1);
+	color: var(--vgu);
+	font-weight: 600;
+}
+
+/* Additional components */
+:root[data-theme="light"] .cource-card {
+	background-color: white;
+	box-shadow: 5px 5px 15px var(--shadow-color);
+	border: 2px solid var(--border-color);
+	color: var(--text-primary);
+}
+
+:root[data-theme="light"] .side-panel-content {
+	border: 2px solid var(--border-color);
+	background: white;
+}
+
+:root[data-theme="light"] .login-form {
+	border: 2px solid var(--border-color);
+	background: white;
+}
+
+:root[data-theme="light"] .text-placer {
+	background: var(--vgu);
+	color: white;
+}
+
+:root[data-theme="light"] .merch-item {
+	box-shadow: 5px 5px 10px var(--shadow-color);
+	background: white;
+}
+
+:root[data-theme="light"] .news-card {
+	box-shadow: 5px 5px 10px var(--shadow-color);
+	background: white;
+}
+
+:root[data-theme="light"] .challenge-name {
+	background-color: var(--bg-secondary);
+	color: var(--text-primary);
+	border: 1px solid var(--border-color);
+}
+
+/* Переключатель темы в светлой теме */
+:root[data-theme="light"] .theme-toggle {
+	color: white;
+	border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+:root[data-theme="light"] .theme-toggle:hover {
+	background: rgba(255, 255, 255, 0.1);
+}
+
+/* Offcanvas для светлой темы */
+:root[data-theme="light"] .offcanvas {
+	background: #0f1724 !important;
+	color: #eef2ff !important;
+}
+
+:root[data-theme="light"] .offcanvas .text-white {
+	color: #eef2ff !important;
+}

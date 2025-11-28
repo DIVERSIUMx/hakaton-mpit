@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="cource-edit">
+	<div class="side-panel-content">
+		<form action="" , method="post" enctype="multipart/form-data">
+			{{ form.hidden_tag() }}
+			{{ form.name.label }}
+			{{ form.name(type="text", class="form-control") }}
+			<br>
+			{{ form.body.label }}
+			{{ form.body(type="text", class="form-control") }}
+			<div class="mb-3">
+				{{form.img.label(for="formFile", class="form-label") }}
+				{{form.img(class="form-control", type="file") }}
+			</div>
+			<hr>
+
+			<table style="width:100%">
+				<thead>
+					<tr>
+						<th>
+							{{ form.submit(class="btn btn-primary") }}
+						</th>
+						<th style="text-align:right">
+							<a class="btn btn-danger" href="/news/delete/{{ news_id }}">Удалить</a>
+						</th>
+					</tr>
+				</thead>
+			</table>
+			<p style="color: red">{{mesage}}</p>
+		</form>
+	</div>
+</div>
+{% endblock %}

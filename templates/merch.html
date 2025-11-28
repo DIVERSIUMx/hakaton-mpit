@@ -1,58 +1,126 @@
 {% extends "base.html" %}
 
+{% block title %}Бренд - ВГУ{% endblock %}
+
 {% block content %}
-<div id="merch-placer">
-	<div class="text-placer">
-		<h1>Мерч ВГУ</h1>
-		<hr>
-		<p>hvalenie mercha</p>
-	</div>
-	<div id="carouselExample" class="carousel slide">
-		<div class="carousel-inner">
-			<div class="carousel-item active">
-				<div class="merch-item">
-					<img src="/static/img/merch/1.png" class="merch-img">
-					<h3>Черная футболка</h3>
-					<p>Стильная черная футболка с серым логотипом ВГУ</p>
-					<a class="btn btn-primary">Купить</a>
-				</div>
-			</div>
-			<div class="carousel-item">
-				<div class="merch-item">
-					<img src="/static/img/merch/2.png" class="merch-img">
-					<h3>Черная футболка</h3>
-					<p>Стильная черная футболка с белым логотипом ВГУ</p>
-					<a class="btn btn-primary">Купить</a>
-				</div>
-			</div>
-			<div class="carousel-item">
-				<div class="merch-item">
-					<img src="/static/img/merch/3.png" class="merch-img">
-					<h3>Белая футболка</h3>
-					<p>Стильная белая футболка с белым логотипом ВГУ</p>
-					<a class="btn btn-primary">Купить</a>
-				</div>
-			</div>
-		</div>
-		<button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-			<span class="visually-hidden">Previous</span>
-		</button>
-		<button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-			<span class="carousel-control-next-icon" aria-hidden="true"></span>
-			<span class="visually-hidden">Next</span>
-		</button>
-	</div>
+<div style="padding:1em">
+<div class="glass-card mb-4">
+    <div class="text-center mb-4">
+        <h1>🎁 Мерч ВГУ</h1>
+        <p class="muted">Официальная продукция с символикой университета</p>
+    </div>
+
+    <div id="merchCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner rounded">
+            <div class="carousel-item active">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <img src="/static/img/merch/black-grey_t-shirt.png" class="d-block rounded merch-img" alt="Черная футболка ВГУ">
+                    </div>
+                    <div class="col-md-6">
+                        <div class="p-4">
+                            <h3>Черная футболка</h3>
+                            <p class="muted">Стильная черная футболка с серым логотипом ВГУ. Выполнена из 100% хлопка.
+                            </p>
+                            <div class="d-flex gap-2 align-items-center mb-3">
+                                <span class="h4 text-warning mb-0">1 200 ₽</span>
+                                <span class="text-muted text-decoration-line-through">1 500 ₽</span>
+                            </div>
+                            <button class="btn btn-vgu">🛒 Купить</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <img src="/static/img/merch/black-white_t-shirt.png" class="d-block merch-img rounded" alt="Черная футболка ВГУ 2">
+                    </div>
+                    <div class="col-md-6">
+                        <div class="p-4">
+                            <h3>Черная футболка</h3>
+                            <p class="muted">Стильная черная футболка с белым логотипом ВГУ. Премиальное качество.</p>
+                            <div class="d-flex gap-2 align-items-center mb-3">
+                                <span class="h4 text-warning mb-0">1 300 ₽</span>
+                            </div>
+                            <button class="btn btn-vgu">🛒 Купить</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <img src="/static/img/merch/white_t-shitrt.png" class="d-block merch-img rounded" alt="Белая футболка ВГУ">
+                    </div>
+                    <div class="col-md-6">
+                        <div class="p-4">
+                            <h3>Белая футболка</h3>
+                            <p class="muted">Классическая белая футболка с логотипом ВГУ. Идеальна для повседневной
+                                носки.</p>
+                            <div class="d-flex gap-2 align-items-center mb-3">
+                                <span class="h4 text-warning mb-0">1 100 ₽</span>
+                            </div>
+                            <button class="btn btn-vgu">🛒 Купить</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <img src="/static/img/merch/vsu_cup.png" class="d-block merch-img rounded" alt="Кружка ВГУ">
+                    </div>
+                    <div class="col-md-6">
+                        <div class="p-4">
+                            <h3>Кружка ВГУ</h3>
+                            <p class="muted">Керамическая кружка с фирменной символикой. Объем 350 мл.</p>
+                            <div class="d-flex gap-2 align-items-center mb-3">
+                                <span class="h4 text-warning mb-0">600 ₽</span>
+                            </div>
+                            <button class="btn btn-vgu">🛒 Купить</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button class="carousel-control-prev" type="button" data-bs-target="#merchCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#merchCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
 </div>
-<h1 style="text-align:center">Активности и новости ВГУ<h1>
-{% for n in news %}
-<div class="news-card">
-	<img src="/static/img/news/{{ n.img }}">
-	<div>
-		<h1>{{ n.name }}</h1>
-		<h5>{{ n.body }}</h5>
-	</div>
-<div>
+
+<div class="glass-card">
+    <h2 class="text-center mb-4">📰 Активности и новости ВГУ</h2>
+
+    {% for n in news %}
+							<div class="glass-card-news" style="margin-top:2em">
+								<div class="h-100" style="display:flex">
+									<img class="news-img" src="/static/img/news/{{ n.img }}">
+									<div style="padding:1em">
+										<h5>{{ n.name }}</h5>
+										<p class="muted">{{ n.body}}</p>
+                                        {% if current_user.is_authenticated %}
+                                        <a href="/news/edit/{{ n.id }}" class="btn btn-warning">Изменить</a>
+                                        {% endif %}
+									</div>
+								</div>
+							</div>
+    {% else %}
+    </div>
+    <div class="text-center py-4">
+        <p class="muted">Новостей пока нет</p>
+    </div>
+    {% endfor %}
+    {% if current_user.is_authenticated %}
+        <a href="/news/edit/new" class="btn btn-success w-100" style="margin-top: 2em">Добавить Новое</a>
+    {% endif %}
 </div>
-{% endfor %}
+</div>
 {% endblock %}

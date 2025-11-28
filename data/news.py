@@ -1,3 +1,5 @@
+from datetime import datetime
+
 import sqlalchemy as sa
 from flask_login import UserMixin
 from sqlalchemy import orm

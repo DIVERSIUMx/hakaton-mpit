@@ -3,6 +3,7 @@ import os
 import dotenv
 from flask import Blueprint, Flask, abort, redirect, render_template, request
 from flask_login import LoginManager, current_user, login_user, logout_user
+from PIL import Image
 
 from data import db_session
 from data.challenges import Chalange
@@ -10,6 +11,7 @@ from data.cources import Cource
 from data.news import News
 from data.user import User
 from forms.cource import CoureAddForm, CoureEditForm
+from forms.news import NewsRedact
 from forms.serch import CoureSerchForm
 from forms.user import UserLogin
 
@@ -26,7 +28,10 @@ login_manager.init_app(app)
 @app.route("/")
 @app.route("/index")
 def index():
-    return render_template("index.html", title="index", current_user=current_user)
+    db = db_session.create_session()
+    news = db.query(News)
+    cources = db.query(Cource)
+    return render_template("index.html", title="index", current_user=current_user, news=news, cources=cources)
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -192,11 +197,94 @@ def new_cource():
     return render_template("cource_add.html", form=form)
 
 
+@app.route("/news/edit/<int:id>", methods=["GET", "POST"])
+def news_edit(id):
+    if not current_user.is_authenticated:
+        return redirect("/")
+
+    db = db_session.create_session()
+    news = db.query(News).filter(News.id == id).first()
+
+    if not news:
+        return abort(404)
+
+    form = NewsRedact()
+
+    if form.validate_on_submit():
+        if form.img.data:
+            f = Image.open(form.img.data)
+            f.save(f"./static/img/news/{news.img}")
+
+        news.name = form.name.data
+        news.body = form.body.data
+
+        db.commit()
+        db.close()
+        return redirect("/merch")
+
+    form.name.data = news.name
+    form.body.data = news.body
+    img = news.img
+
+    return render_template("news_edit.html", news_id=id, img=img, form=form)
+
+
+@app.route("/news/edit/new", methods=["GET", "POST"])
+def news_add():
+    if not current_user.is_authenticated:
+        return redirect("/")
+
+    form = NewsRedact()
+
+    if form.validate_on_submit():
+        db = db_session.create_session()
+        news = News()
+
+        news.name = form.name.data
+        news.body = form.body.data
+
+        files = os.listdir(os.path.join("static", "img", "news"))
+
+        if not files:
+            filename = "1.png"
+        else:
+            filename = f"{max(map(lambda f: int(f.split(".")[0]), files)) + 1}.png"
+
+        f = Image.open(form.img.data)
+        f.convert
+        f.save(os.path.join("static", "img", "news", filename))
+        news.img = filename
+        db.add(news)
+        db.commit()
+        db.close()
+        return redirect("/merch")
+
+    return render_template("news_add.html", news_id=id, form=form)
+
+
+@app.route("/news/delete/<int:id>")
+def news_delete(id):
+    if not current_user.is_authenticated:
+        return redirect("/")
+
+    db = db_session.create_session()
+    news = db.query(News).filter(News.id == id).first()
+
+    if not news:
+        return abort(404)
+
+    db.delete(news)
+    db.commit()
+    db.close()
+
+    return redirect("/merch")
+
+
 @app.route("/merch")
 def merch():
     db = db_session.create_session()
     news = db.query(News)
-    return render_template("merch.html", news=news)
+    return render_template("merch.html", news=news, current_user=current_user)
 
 
 @login_manager.user_loader
