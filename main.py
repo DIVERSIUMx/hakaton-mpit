@@ -1,4 +1,5 @@
 import os
+import sys
 
 import dotenv
 from flask import (Blueprint, Flask, abort, json, jsonify, make_response,
@@ -20,7 +21,13 @@ app = Flask(__file__)
 
 dotenv.load_dotenv()
 
-app.config['SECRET_KEY'] = os.getenv("SECRET")
+secret_key = os.getenv("SECRET")
+
+if not secret_key:
+    print("Не найденно переменной окружения SECRET")
+    sys.exit(1)
+
+app.config['SECRET_KEY'] = secret_key
 
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -30,7 +37,7 @@ login_manager.init_app(app)
 @app.route("/index")
 def index():
     db = db_session.create_session()
-    news = db.query(News)
+    news = db.query(News).order_by(-News.id)
     cources = db.query(Cource)
     return render_template("index.html", title="index", current_user=current_user, news=news, cources=cources)
 
@@ -285,7 +292,7 @@ def news_delete(id):
 @app.route("/merch")
 def merch():
     db = db_session.create_session()
-    news = db.query(News)
+    news = db.query(News).order_by(-News.id)
     return render_template("merch.html", news=news, current_user=current_user)
 
 
@@ -338,6 +345,7 @@ def load_user(id):
 
 
 def main():
+    os.makedirs("./db", exist_ok=True)
     db_session.global_init("./db/blob.db")
     db = db_session.create_session()
     if not db.query(User).get(1):

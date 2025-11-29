@@ -32,6 +32,7 @@
 				<a class="nav-link" href="/">Главная</a>
 				<a class="nav-link" href="/cources">Поступления</a>
 				<a class="nav-link" href="/merch">Бренд</a>
+				<a class="nav-link" href="/calc">Калькулятор</a>
 				{% if current_user.is_authenticated %}
 				<a class="btn btn-outline-light btn-sm ms-3" href="/logout">Выйти</a>
 				{% else %}
@@ -55,18 +56,22 @@
 			<h5 class="offcanvas-title">Меню</h5>
 			<button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
 		</div>
-		<div class="offcanvas-body">
+		<div style="padding: 1rem">
 			<ul class="list-unstyled">
 				<li><a class="d-block py-2 text-decoration-none text-white" href="/"
-						data-bs-dismiss="offcanvas">Главная</a>
+						>Главная</a>
 				</li>
-				<li><a class="d-block py-2 text-decoration-none text-white" href="/coucers"
-						data-bs-dismiss="offcanvas">Поступления</a></li>
+				<li><a class="d-block py-2 text-decoration-none text-white" href="/cources"
+						>Поступления</a></li>
 				<li><a class="d-block py-2 text-decoration-none text-white" href="/merch"
-						data-bs-dismiss="offcanvas">Бренд</a></li>
-				<li><a class="d-block py-2 text-decoration-none text-white" href="/"
-						data-bs-dismiss="offcanvas">Калькулятор</a></li>
-				<li class="pt-3"><button class="btn btn-light w-100">Войти</button></li>
+						>Бренд</a></li>
+				<li><a class="d-block py-2 text-decoration-none text-white" href="/calc"
+						>Калькулятор</a></li>
+				{% if current_user.is_authenticated %}
+				<li class="pt-3"><a class="btn btn-light w-100" href="/login">Войти</a></li>
+				{% else %}
+				<li class="pt-3"><a class="btn btn-light w-100" href="/logout">Выйти</a></li>
+        {% endif %}
 			</ul>
 		</div>
 	</div>
