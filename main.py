@@ -305,7 +305,7 @@ def get_cources():
     if not request.args.get("it"):
         c = c.filter(Cource.it == 0)
 
-    if not request.args.get("chemystry"):
+    if not request.args.get("chemistry"):
         c = c.filter(Cource.chemystry == 0)
 
     if not request.args.get("sosial"):

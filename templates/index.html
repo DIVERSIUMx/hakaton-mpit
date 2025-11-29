@@ -91,17 +91,17 @@
 
 						<form class="mt-4">
 							<div class="mb-3">
-								<label for="fullName" class="form-label">ФИО</label>
+								<label for="fullName" class="form-label muted">ФИО</label>
 								<input type="text" class="form-control" id="fullName" placeholder="Иванов Иван Иванович"
 									required>
 							</div>
 							<div class="mb-3">
-								<label for="phone" class="form-label">Телефон</label>
+								<label for="phone" class="form-label muted">Телефон</label>
 								<input type="tel" class="form-control" id="phone" placeholder="+7 (999) 123-45-67"
 									required>
 							</div>
 							<div class="mb-3">
-								<label for="direction" class="form-label">Направление подготовки</label>
+								<label for="direction" class="form-label muted">Направление подготовки</label>
 								<select class="form-control" id="direction" required>
 									<option value="" selected disabled>Выберите направление</option>
 									{% for c in cources %}
@@ -147,7 +147,7 @@
 					</div>
 				</div>
 				<div class="col-lg-6 order-lg-1 reveal">
-					<div id="brandCarousel" class="carousel slide brand-carousel" data-bs-ride="carousel"
+					<div id="brandCarousel" class="carousel slide glass-card" data-bs-ride="carousel"
 						data-bs-interval="4000">
 						<div class="carousel-indicators">
 							<button type="button" data-bs-target="#brandCarousel" data-bs-slide-to="0"
@@ -598,7 +598,6 @@
 </style>
 
 <script>
-	// Данные бота
 	const botResponses = {
 		'проходные': 'Средние проходные баллы в ВГУ:\n\n📊 Математика и IT: 180-250\n🔬 Естественные науки: 150-200\n📚 Гуманитарные: 140-190\n💼 Экономика: 170-220\n\nИспользуйте калькулятор ЕГЭ для точного подбора!',
 
@@ -617,7 +616,6 @@
 		'default': 'Извините, я еще учусь! Пока могу ответить на вопросы о проходных баллах, документах, направлениях, сроках, общежитии и контактах. Выберите один из этих вариантов!'
 	};
 
-	// Элементы DOM
 	const chatButton = document.getElementById('chatButton');
 	const chatContainer = document.getElementById('chatContainer');
 	const chatClose = document.getElementById('chatClose');
@@ -626,7 +624,6 @@
 	const chatSend = document.getElementById('chatSend');
 	const quickReplies = document.querySelectorAll('.quick-reply');
 
-	// Открытие/закрытие чата
 	chatButton.addEventListener('click', () => {
 		chatContainer.classList.add('active');
 	});
@@ -635,29 +632,24 @@
 		chatContainer.classList.remove('active');
 	});
 
-	// Отправка сообщения
 	function sendMessage() {
 		const message = chatInput.value.trim();
 		if (!message) return;
 
-		// Добавляем сообщение пользователя
 		addMessage(message, 'user');
 		chatInput.value = '';
 
-		// Имитируем задержку ответа бота
 		setTimeout(() => {
 			const response = getBotResponse(message);
 			addMessage(response, 'bot');
 		}, 1000);
 	}
 
-	// Обработчики отправки
 	chatSend.addEventListener('click', sendMessage);
 	chatInput.addEventListener('keypress', (e) => {
 		if (e.key === 'Enter') sendMessage();
 	});
 
-	// Быстрые ответы
 	quickReplies.forEach(button => {
 		button.addEventListener('click', () => {
 			const question = button.getAttribute('data-question');
@@ -670,7 +662,6 @@
 		});
 	});
 
-	// Добавление сообщения в чат
 	function addMessage(text, sender) {
 		const messageDiv = document.createElement('div');
 		messageDiv.className = `message ${sender}-message`;
@@ -694,7 +685,6 @@
 		chatMessages.scrollTop = chatMessages.scrollHeight;
 	}
 
-	// Получение ответа бота
 	function getBotResponse(message) {
 		const lowerMessage = message.toLowerCase();
 
@@ -723,42 +713,10 @@
 		return botResponses.default;
 	}
 
-	// Закрытие чата по клику вне области
 	document.addEventListener('click', (e) => {
 		if (!chatContainer.contains(e.target) && !chatButton.contains(e.target) && chatContainer.classList.contains('active')) {
 			chatContainer.classList.remove('active');
 		}
 	});
 </script>
-
-<!-- <div id="main-placer"> -->
-<!-- <div class="text-placer"> -->
-<!-- 	<h3>Добро пожаловать в ВГУ</h3> -->
-<!-- 	<p>Лучшие образовательные программы, современные методы обучения, студенческая жизнь — всё это ждет тебя в -->
-<!-- 		Воронежском государственном университете.</p> -->
-<!-- </div> -->
-<!-- <div id="coursel-placer" class="h100"> -->
-<!-- 	<div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel"> -->
-<!-- 		<div class="carousel-inner"> -->
-<!-- 			<div class="carousel-item active"> -->
-<!-- 				<img src="/static/img/vsu_photos/1.jpg" class="d-block w-100" alt="..."> -->
-<!-- 			</div> -->
-<!-- 			<div class="carousel-item"> -->
-<!-- 				<img src="/static/img/vsu_photos/2.jpg" class="d-block w-100" alt="..."> -->
-<!-- 			</div> -->
-<!-- 		</div> -->
-<!-- 		<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" -->
-<!-- 			data-bs-slide="prev"> -->
-<!-- 			<span class="carousel-control-prev-icon" aria-hidden="true"></span> -->
-<!-- 			<span class="visually-hidden">Previous</span> -->
-<!-- 		</button> -->
-<!-- 		<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" -->
-<!-- 			data-bs-slide="next"> -->
-<!-- 			<span class="carousel-control-next-icon" aria-hidden="true"></span> -->
-<!-- 			<span class="visually-hidden">Next</span> -->
-<!-- 		</button> -->
-<!-- 	</div> -->
-<!-- </div> -->
-<!-- </div> -->
-
 {% endblock %}

@@ -75,7 +75,7 @@
 		{% endblock %}
 	</main>
   <script>
-    // Управление темами для главной страницы
+    
     function initTheme() {
       const savedTheme = localStorage.getItem('theme') || 'dark';
       const html = document.documentElement;
@@ -105,11 +105,16 @@
 
     function applyThemeToPage(theme) {
       if (theme === 'light') {
-        // Применяем светлую тему
+
+        document.querySelectorAll(".bonus-item").forEach(btn => {
+          btn.style.backGroundColor = 'rgba(0, 0, 0, 0.03)';
+          btn.style.borderColor = 'rgba(0, 0, 0, 0.1)';
+        })
+        
         document.body.style.background = '#f1f5f9';
         document.body.style.color = '#001032';
 
-        // Обновляем карточки
+        
         document.querySelectorAll('.glass-card').forEach(card => {
           card.style.background = 'linear-gradient(180deg, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.5))';
           card.style.border = '1px solid #cbd5e1';
@@ -121,22 +126,40 @@
           card.style.background = 'linear-gradient(180deg, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.5))';
         });
 
-        // Обновляем форму
+        
         document.querySelectorAll('.form-control').forEach(input => {
           input.style.background = 'rgba(255, 255, 255, 0.8)';
           input.style.border = '1px solid #cbd5e1';
           input.style.color = '#001032';
         });
 
-        // Обновляем muted текст
+       
         document.querySelectorAll('.muted').forEach(el => {
           el.style.color = '#588cc8';
         });
 
+        document.querySelectorAll(".btn-outline-light").forEach(btn => {
+          btn.style.color = '#588cc8';
+          btn.style.borderColor = '#588cc8';
+        })
+
+        document.querySelectorAll(".brand-sub").forEach(btn => {
+          btn.style.color = 'rgba(255, 255, 255, 1)';
+        })
+
       } else {
-        // Возвращаем темную тему
         document.body.style.background = '#0f1724';
         document.body.style.color = '#eef2ff';
+
+        document.querySelectorAll(".btn-outline-light").forEach(btn => {
+          btn.style.color = '#fff';
+          btn.style.borderColor = '#fff';
+        })
+
+        document.querySelectorAll(".bonus-item").forEach(btn => {
+          btn.style.backGroundColor = 'rgba(255, 255, 255, 0.03)';
+          btn.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+        })
 
         document.querySelectorAll('.glass-card').forEach(card => {
           card.style.background = 'linear-gradient(180deg, rgba(15,23,36,0.8), rgba(15, 23, 36,0.8))';
@@ -161,7 +184,7 @@
       }
     }
 
-    // Инициализация темы
+    
     document.addEventListener('DOMContentLoaded', initTheme);
     document.getElementById('themeToggle')?.addEventListener('click', toggleTheme);
   </script>

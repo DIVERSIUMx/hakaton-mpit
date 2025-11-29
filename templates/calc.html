@@ -17,61 +17,108 @@
         <div class="glass-card reveal">
           <form id="egeCalculatorForm">
             <div class="row">
-              <!-- Обязательные предметы -->
               <div class="col-md-6 mb-4">
                 <div class="subject-header">📚 Обязательные предметы</div>
                 <div class="subject-group">
                   <div class="input-wrapper">
-                    <label for="russian" class="form-label">Русский язык</label>
+                    <label for="russian" class="form-label muted">Русский язык</label>
                     <input type="number" class="form-control ege-input" id="russian" min="0" max="100"
                       placeholder="0-100" required>
                   </div>
                 </div>
                 <div class="subject-group">
                   <div class="input-wrapper">
-                    <label for="math" class="form-label">Математика</label>
+                    <label for="math" class="form-label muted">Математика</label>
                     <input type="number" class="form-control ege-input" id="math" min="0" max="100" placeholder="0-100"
                       required>
                   </div>
                 </div>
               </div>
 
-              <!-- Предметы по выбору -->
               <div class="col-md-6 mb-4">
                 <div class="subject-header">🎯 Предметы по выбору</div>
                 <div class="input-group-custom">
                   <div class="input-wrapper">
-                    <label for="physics" class="form-label">Физика</label>
+                    <label for="physics" class="form-label muted">Физика</label>
                     <input type="number" class="form-control ege-input" id="physics" min="0" max="100"
                       placeholder="0-100">
                   </div>
                   <div class="input-wrapper">
-                    <label for="informatics" class="form-label">Информатика</label>
+                    <label for="informatics" class="form-label muted">Информатика</label>
                     <input type="number" class="form-control ege-input" id="informatics" min="0" max="100"
                       placeholder="0-100">
                   </div>
                   <div class="input-wrapper">
-                    <label for="chemistry" class="form-label">Химия</label>
+                    <label for="chemistry" class="form-label muted">Химия</label>
                     <input type="number" class="form-control ege-input" id="chemistry" min="0" max="100"
                       placeholder="0-100">
                   </div>
                 </div>
                 <div class="input-group-custom mt-3">
                   <div class="input-wrapper">
-                    <label for="biology" class="form-label">Биология</label>
+                    <label for="biology" class="form-label muted">Биология</label>
                     <input type="number" class="form-control ege-input" id="biology" min="0" max="100"
                       placeholder="0-100">
                   </div>
                   <div class="input-wrapper">
-                    <label for="geography" class="form-label">География</label>
+                    <label for="geography" class="form-label muted">География</label>
                     <input type="number" class="form-control ege-input" id="geography" min="0" max="100"
                       placeholder="0-100">
                   </div>
                   <div class="input-wrapper">
-                    <label for="social" class="form-label">Обществознание</label>
+                    <label for="social" class="form-label muted">Обществознание</label>
                     <input type="number" class="form-control ege-input" id="social" min="0" max="100"
                       placeholder="0-100">
                   </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row mt-4">
+              <div class="col-12">
+                <div class="subject-header">🏆 Дополнительные достижения (до +10 баллов)</div>
+                <div class="bonus-item">
+                  <div class="form-check">
+                    <input class="form-check-input bonus-checkbox" type="checkbox" id="gto" data-points="2">
+                    <label class="form-check-label" for="gto">
+                      Золотой знак ГТО <span class="bonus-points">+2 балла</span>
+                    </label>
+                  </div>
+                </div>
+                <div class="bonus-item">
+                  <div class="form-check">
+                    <input class="form-check-input bonus-checkbox" type="checkbox" id="volunteer" data-points="1">
+                    <label class="form-check-label" for="volunteer">
+                      Волонтерская деятельность <span class="bonus-points">+1 балл</span>
+                    </label>
+                  </div>
+                </div>
+                <div class="bonus-item">
+                  <div class="form-check">
+                    <input class="form-check-input bonus-checkbox" type="checkbox" id="olympiad" data-points="3">
+                    <label class="form-check-label" for="olympiad">
+                      Победитель олимпиады <span class="bonus-points">+3 балла</span>
+                    </label>
+                  </div>
+                </div>
+                <div class="bonus-item">
+                  <div class="form-check">
+                    <input class="form-check-input bonus-checkbox" type="checkbox" id="essay" data-points="5">
+                    <label class="form-check-label" for="essay">
+                      Итоговое сочинение <span class="bonus-points">+5 баллов</span>
+                    </label>
+                  </div>
+                </div>
+                <div class="bonus-item">
+                  <div class="form-check">
+                    <input class="form-check-input bonus-checkbox" type="checkbox" id="portfolio" data-points="2">
+                    <label class="form-check-label" for="portfolio">
+                      Портфолио достижений <span class="bonus-points">+2 балла</span>
+                    </label>
+                  </div>
+                </div>
+                <div class="mt-3">
+                  <small class="muted">* Максимальная сумма дополнительных баллов: 10</small>
                 </div>
               </div>
             </div>
@@ -92,6 +139,7 @@
       <div class="col-12">
         <div class="text-center mb-5 reveal">
           <h2 class="section-title">Подходящие направления</h2>
+          <div id="totalScoreDisplay" class="total-score"></div>
           <p class="muted">На основе ваших баллов ЕГЭ мы подобрали следующие направления подготовки</p>
           <div class="accent-underline"></div>
         </div>
@@ -99,7 +147,6 @@
 
       <div class="col-lg-10">
         <div id="programsList" class="row g-4">
-          <!-- Результаты будут здесь -->
         </div>
 
         <div class="text-center mt-5 pt-4">
@@ -111,7 +158,7 @@
 </section>
 </main>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https:
 <script>
 
 
@@ -144,41 +191,51 @@
 
 
   async function findSuitablePrograms(scores) {
-    let request = "/api/get-avalable-cources?";
-    let ball_ctn = 0;
-    for (key in scores) {
-      if (scores[key] > 40) {
+    let request = " /api/get-avalable-cources?"; let ball_ctn=0; for (key in scores) { if (scores[key]> 40) {
         ball_ctn += scores[key];
         request += `${key}=1&`;
       }
     }
-    request += `ball_ctn=${ball_ctn}`;
-    let resp = await fetch(request).then(response => {
-      return response.json();
-    })
+      request += `ball_ctn=${ball_ctn}`;
+      let resp = await fetch(request).then(response => {
+        return response.json();
+      })
 
-    return resp
+      let bonusPoints = 0;
+      const bonusCheckboxes = document.querySelectorAll('.bonus-checkbox:checked');
+      bonusCheckboxes.forEach(checkbox => {
+        bonusPoints += parseInt(checkbox.getAttribute('data-points'));
+      });
+
+      bonusPoints = Math.min(bonusPoints, 10);
+
+      ball_ctn += bonusPoints;
+
+      const totalScoreDisplay = document.getElementById('totalScoreDisplay');
+
+      totalScoreDisplay.innerHTML = `🎯 Ваш общий балл: <strong>${ball_ctn}</strong> (ЕГЭ: ${ball_ctn - bonusPoints} + Дополнительно: ${bonusPoints})`;
+      return resp
   }
 
-  function getSubjectKey(subjectName) {
-    const mapping = {
-      'Физика': 'physics',
-      'Информатика': 'informatics',
-      'Химия': 'chemistry',
-      'Биология': 'biology',
-      'География': 'geography',
-      'Обществознание': 'social'
-    };
-    return mapping[subjectName] || subjectName.toLowerCase();
-  }
+      function getSubjectKey(subjectName) {
+        const mapping = {
+          'Физика': 'physics',
+          'Информатика': 'informatics',
+          'Химия': 'chemistry',
+          'Биология': 'biology',
+          'География': 'geography',
+          'Обществознание': 'social'
+        };
+        return mapping[subjectName] || subjectName.toLowerCase();
+      }
 
-  // Функция отображения результатов
-  function displayResults(suitablePrograms) {
-    const resultsContainer = document.getElementById('programsList');
-    const resultsSection = document.getElementById('results');
 
-    if (suitablePrograms.length === 0) {
-      resultsContainer.innerHTML = `
+      function displayResults(suitablePrograms) {
+        const resultsContainer = document.getElementById('programsList');
+        const resultsSection = document.getElementById('results');
+
+        if (suitablePrograms.length === 0) {
+          resultsContainer.innerHTML = `
         <div class="col-12 text-center">
           <div class="glass-card p-5">
             <h4 class="text-warning mb-3">😔 Подходящих направлений не найдено</h4>
@@ -187,8 +244,8 @@
           </div>
         </div>
       `;
-    } else {
-      resultsContainer.innerHTML = suitablePrograms.map(program => `
+        } else {
+          resultsContainer.innerHTML = suitablePrograms.map(program => `
         <div class="col-md-6 col-lg-4">
           <div class="glass-card program-card p-4 h-100">
             <div class="d-flex justify-content-between align-items-start mb-3">
@@ -202,37 +259,37 @@
           </div>
         </div>
       `).join('');
-    }
+        }
 
-    resultsSection.style.display = 'block';
+        resultsSection.style.display = 'block';
 
-    // Анимация появления карточек
-    setTimeout(() => {
-      document.querySelectorAll('#programsList .glass-card').forEach((card, index) => {
+
         setTimeout(() => {
-          card.classList.add('reveal', 'in-view');
-        }, index * 100);
+          document.querySelectorAll('#programsList .glass-card').forEach((card, index) => {
+            setTimeout(() => {
+              card.classList.add('reveal', 'in-view');
+            }, index * 100);
+          });
+        }, 100);
+      }
+
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) e.target.classList.add('in-view');
+        });
+      }, {threshold: 0.1});
+
+      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+
+      window.addEventListener('scroll', () => {
+        const header = document.querySelector('.site-header');
+        if (window.scrollY > 50) {
+          header.classList.add('scrolled');
+        } else {
+          header.classList.remove('scrolled');
+        }
       });
-    }, 100);
-  }
-
-  // Анимация появления элементов
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) e.target.classList.add('in-view');
-    });
-  }, {threshold: 0.1});
-
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-  // Обработчик скролла для header
-  window.addEventListener('scroll', () => {
-    const header = document.querySelector('.site-header');
-    if (window.scrollY > 50) {
-      header.classList.add('scrolled');
-    } else {
-      header.classList.remove('scrolled');
-    }
-  });
-</script>
+    </script>
 {% endblock %}

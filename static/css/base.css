@@ -363,7 +363,7 @@ section {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	background: rgba(255, 255, 255, 0.05);
+	background: rgba(35, 53, 108, 0.5);
 	border: 1px solid rgba(255, 255, 255, 0.1);
 	color: rgba(255, 255, 255, 0.8);
 	transition: all 0.3s ease;
@@ -375,12 +375,6 @@ section {
 	transform: scale(1.1);
 }
 
-.brand-carousel {
-	border-radius: 14px;
-	overflow: hidden;
-	box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
-	height: 400px;
-}
 
 .brand-carousel .carousel-inner,
 .brand-carousel .carousel-item {
@@ -394,8 +388,8 @@ section {
 	background: rgba(255, 255, 255, 0.05);
 }
 
-.brand-carousel .carousel-control-prev,
-.brand-carousel .carousel-control-next {
+.carousel-control-prev,
+.carousel-control-next {
 	width: 50px;
 	height: 50px;
 	background: rgba(35, 53, 108, 0.7);
@@ -424,7 +418,7 @@ section {
 	bottom: 20px;
 }
 
-.brand-carousel .carousel-indicators button {
+.carousel-indicators button {
 	width: 10px;
 	height: 10px;
 	border-radius: 50%;
@@ -642,7 +636,7 @@ section {
 }
 
 .back-img {
-	width: 100%;
+	height: 100%;
 	z-index: -100;
 	position: fixed;
 	top: 75px;
@@ -650,6 +644,30 @@ section {
 
 .ege {
 	background-color: #12245bbb;
+}
+
+
+.bonus-checkbox {
+	margin-right: 8px;
+}
+
+.bonus-item {
+	background: rgba(255, 255, 255, 0.03);
+	border: 1px solid rgba(255, 255, 255, 0.1);
+	border-radius: 10px;
+	padding: 15px;
+	margin-bottom: 10px;
+	transition: all 0.3s ease;
+}
+
+.bonus-item:hover {
+	background: rgba(255, 255, 255, 0.05);
+	border-color: rgba(255, 255, 255, 0.2);
+}
+
+.bonus-points {
+	color: #20c997;
+	font-weight: 600;
 }
 
 /* .header_content { */
